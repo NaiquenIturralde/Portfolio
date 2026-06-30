@@ -61,28 +61,30 @@ jobs:
         run: |
           echo "--- top-level contents of ./release ---"
           ls -la release
-          echo "--- contents of release/_framework (first 20 entries) ---"
-          ls -la release/_framework 2>/dev/null | head -n 20 || echo "_framework/ not found"
+          echo "--- contents of release/wwwroot (if it exists) ---"
+          ls -la release/wwwroot 2>/dev/null | head -n 30 || echo "release/wwwroot/ not present"
+          echo "--- contents of release/wwwroot/_framework (first 20 entries) ---"
+          ls -la release/wwwroot/_framework 2>/dev/null | head -n 20 || echo "release/wwwroot/_framework/ not found"
 
       - name: Fix base href for GitHub Pages
-        # Blazor WebAssembly uses <base href="/" /> in index.html.
+        # Blazor WebAssembly uses <base href="/" /> in wwwroot/index.html.
         # On GitHub Pages the site is served under /<REPO_NAME>/, so the base
         # href must be rewritten to match the repository name.
-        # IMPORTANT: replace PortfolioNaiquen below with the actual repository
-        # name (case-sensitive) if it is different.
+        # With -p:PublishDir=release, the published site is at release/wwwroot/,
+        # so the index.html path is release/wwwroot/index.html.
         run: |
-          sed -i 's|<base href="/" />|<base href="/Portfolio/" />|' release/index.html
+          sed -i 's|<base href="/" />|<base href="/Portfolio/" />|' release/wwwroot/index.html
 
       - name: Add .nojekyll
         # Tells GitHub Pages to serve the site as static files (no Jekyll
         # processing), which is required for Blazor's _framework folder and
         # other underscored paths.
-        run: touch release/.nojekyll
+        run: touch release/wwwroot/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: release
+          path: release/wwwroot
 
   deploy:
     needs: build

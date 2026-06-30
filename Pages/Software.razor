@@ -1,0 +1,282 @@
+@page "/software"
+@using PortfolioNaiquen.Shared.Components
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+<PageTitle>@Lang.T("navSoftware") - Naiquen Iturralde</PageTitle>
+
+<div class="portfolio-page">
+    <section class="page-hero fade-in">
+        <div class="hero-content">
+            <h1 class="page-title">
+                <span class="gradient-text">@Lang.T("softwarePageTitle")</span>
+            </h1>
+            <p class="page-subtitle">@Lang.T("softwarePageSubtitle")</p>
+            <p class="page-intro">@Lang.T("softwarePageIntro")</p>
+        </div>
+    </section>
+
+    <section class="featured-section fade-in">
+        <div class="software-card glass">
+            <div class="software-card__media software-card__media--featured">
+                <img src="/img/love2read.png" alt="Love2Read Logo" />
+            </div>
+            <div class="software-card__content">
+                <p class="project-meta-label">@Lang.T("love2readMetaLabel")</p>
+                <h2 class="project-featured-title">Love2Read</h2>
+
+                <div class="project-section">
+                    <p class="project-section-label">@Lang.T("love2readProblemLabel")</p>
+                    <p class="project-problem-text">@Lang.T("love2readProblemText")</p>
+                </div>
+
+                <div class="project-section">
+                    <p class="project-section-label">@Lang.T("love2readFeaturesLabel")</p>
+                    <ul class="project-features-list">
+                        <li>@Lang.T("love2readFeature1")</li>
+                        <li>@Lang.T("love2readFeature2")</li>
+                        <li>@Lang.T("love2readFeature3")</li>
+                        <li>@Lang.T("love2readFeature4")</li>
+                        <li>@Lang.T("love2readFeature5")</li>
+                    </ul>
+                </div>
+
+                <div class="project-section">
+                    <p class="project-section-label">@Lang.T("love2readArchLabel")</p>
+                    <div class="project-arch-pills">
+                        <span class="project-arch-pill">ASP.NET Core API</span>
+                        <span class="project-arch-pill">SQL Server</span>
+                        <span class="project-arch-pill">SPA (HTML, CSS, JS)</span>
+                    </div>
+                </div>
+
+                <div class="project-featured-tags">
+                    @foreach (var tag in new List<string> { ".NET", "SQL Server", "MVC", "Bootstrap", "UX/UI" })
+                    {
+                        <span class="tag">@tag</span>
+                    }
+                </div>
+                <div class="project-featured-buttons">
+                    <a href="https://github.com/NaiquenIturralde" class="project-button demo-button" target="_blank"
+                       rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none" />
+                        </svg>
+                        @Lang.T("verDemo")
+                    </a>
+                    <a href="https://github.com/NaiquenIturralde" class="project-button code-button" target="_blank"
+                       rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                        </svg>
+                        @Lang.T("verCodigo")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects-section fade-in">
+        <div class="software-cards-list">
+
+            <div class="software-card glass">
+                <div class="software-card__media">
+                    <img src="/img/OjoCryptoView.png" alt="CryptoView" loading="lazy" />
+                </div>
+                <div class="software-card__content">
+                    <p class="project-meta-label">@Lang.T("cryptoviewMetaLabel")</p>
+                    <h2 class="project-featured-title">CryptoView</h2>
+
+                    <div class="project-section">
+                        <p class="project-section-label">@Lang.T("cryptoviewProblemLabel")</p>
+                        <p class="project-problem-text">@Lang.T("cryptoviewProblemText")</p>
+                    </div>
+
+                    <div class="project-section">
+                        <p class="project-section-label">@Lang.T("cryptoviewFeaturesLabel")</p>
+                        <ul class="project-features-list">
+                            <li>@Lang.T("cryptoviewFeature1")</li>
+                            <li>@Lang.T("cryptoviewFeature2")</li>
+                            <li>@Lang.T("cryptoviewFeature3")</li>
+                            <li>@Lang.T("cryptoviewFeature4")</li>
+                            <li>@Lang.T("cryptoviewFeature5")</li>
+                            <li>@Lang.T("cryptoviewFeature6")</li>
+                        </ul>
+                    </div>
+
+                    <div class="project-section">
+                        <p class="project-section-label">@Lang.T("cryptoviewArchLabel")</p>
+                        <div class="project-arch-pills">
+                            <span class="project-arch-pill">Blazor Server</span>
+                            <span class="project-arch-pill">ASP.NET Core</span>
+                            <span class="project-arch-pill">SQL Server</span>
+                            <span class="project-arch-pill">API REST externa</span>
+                            <span class="project-arch-pill">Sistema con CRUD</span>
+                            <span class="project-arch-pill">Autenticación y roles</span>
+                        </div>
+                    </div>
+
+                    <div class="project-featured-tags">
+                        @foreach (var tag in new List<string> { ".NET", "Blazor", "API REST", "SQL Server", "CRUD" })
+                        {
+                            <span class="tag">@tag</span>
+                        }
+                    </div>
+                    <div class="project-featured-buttons">
+                        <a href="https://youtu.be/tu-demo" class="project-button demo-button" target="_blank"
+                           rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24">
+                                <polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none" />
+                            </svg>
+                            @Lang.T("verDemo")
+                        </a>
+                        <a href="https://github.com/NaiquenIturralde" class="project-button code-button" target="_blank"
+                           rel="noopener noreferrer">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                            </svg>
+                            @Lang.T("verCodigo")
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            @* <div class="software-card glass">
+                        <div class="software-card__media">
+                            <img src="/img/tcp-placeholder.png" alt="Sistema TCP Cliente/Servidor" loading="lazy"
+                                 onerror="this.style.display='none';this.parentElement.setAttribute('data-label','TCP / IP')" />
+                        </div>
+                        <div class="software-card__content">
+                            <p class="project-meta-label">Arquitectura distribuida con Docker</p>
+                            <h2 class="project-featured-title">Sistema TCP Cliente/Servidor</h2>
+                            <p class="project-problem-text">Comunicación TCP/IP en C# con soporte de múltiples clientes
+                                concurrentes, protocolo de mensajería personalizado y contenedorización para despliegue rápido.
+                            </p>
+                            <div class="project-featured-tags">
+                                @foreach (var tag in new List<string> { "C#", "TCP/IP", "Docker", "Sockets", "Networking" })
+                                {
+                                    <span class="tag">@tag</span>
+                                }
+                            </div>
+                            <div class="project-featured-buttons">
+                                <a href="https://github.com/NaiquenIturralde" class="project-button code-button" target="_blank"
+                                       rel="noopener noreferrer">
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20
+            4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5
+            4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                    </svg>
+                                    Ver Código
+                                </a>
+                            </div>
+                        </div>
+                    </div> *@
+
+            @* <div class="software-card glass">
+                        <div class="software-card__media">
+                            <img src="/img/PortadaRedNeuronal.png" alt="Clasificador de patrones con IA" loading="lazy"
+                                 onerror="this.style.display='none';this.parentElement.setAttribute('data-label','IA · ML')" />
+                        </div>
+                        <div class="software-card__content">
+                            <p class="project-meta-label">Machine learning con visualización interactiva</p>
+                            <h2 class="project-featured-title">Clasificador de patrones con IA</h2>
+
+                            <div class="project-section">
+                                <p class="project-section-label">Qué hace</p>
+                                <p class="project-problem-text">Aplicación de machine learning que entrena un modelo de
+                                    clasificación y presenta los resultados de forma visual e interpretable, haciendo
+                                    comprensible el comportamiento de la IA al usuario.</p>
+                                </div>
+
+                                <div class="project-section">
+                                    <p class="project-section-label">Valor para el usuario</p>
+                                    <ul class="project-features-list">
+                                        <li>Entrenamiento del modelo con datos reales</li>
+                                        <li>Predicción de patrones en tiempo real</li>
+                                        <li>Visualización de métricas (precisión, pérdida)</li>
+                                        <li>Interfaz clara para interpretar predicciones</li>
+                                    </ul>
+                                </div>
+
+                                <div class="project-featured-tags">
+                                    @foreach (var tag in new List<string> { "Python", "Keras", "TensorFlow", "Machine Learning",
+                 "Visualización" })
+                                    {
+                                        <span class="tag">@tag</span>
+                                    }
+                                </div>
+                                <div class="project-featured-buttons">
+                                    <a href="https://github.com/NaiquenIturralde" class="project-button code-button" target="_blank"
+                                           rel="noopener noreferrer">
+                                        <svg viewBox="0 0 24 24">
+                                            <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20
+            4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5
+            4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                        </svg>
+                                        Ver Código
+                                    </a>
+                                </div>
+                            </div>
+                        </div> *@
+
+            @if (ShowTechnicaturaProject)
+            {
+                <div class="software-card glass">
+                    <div class="software-card__media">
+                        <img src="/img/tecnicatura-placeholder.png" alt="Proyectos Tecnicatura" loading="lazy"
+                             onerror="this.style.display='none';this.parentElement.setAttribute('data-label','Tecnicatura')" />
+                    </div>
+                    <div class="software-card__content">
+                        <p class="project-meta-label">Trabajos prácticos e integradores</p>
+                        <h2 class="project-featured-title">Proyectos Tecnicatura</h2>
+                        <p class="project-problem-text">Colección de proyectos del cursado: aplicaciones web, sistemas de
+                            gestión, bases de datos relacionales y desarrollo mobile con foco en buenas prácticas.</p>
+                            <div class="project-featured-tags">
+                                @foreach (var tag in new List<string> { "C#", "Java", "SQL", "Android", "Web" })
+                                {
+                                    <span class="tag">@tag</span>
+                                }
+                            </div>
+                            <div class="project-featured-buttons">
+                                <a href="https://github.com/NaiquenIturralde" class="project-button code-button" target="_blank"
+                                   rel="noopener noreferrer">
+                                    <svg viewBox="0 0 24 24">
+                                        <path
+                                        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                    </svg>
+                                    @Lang.T("verCodigo")
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </section>
+
+        <section class="page-navigation fade-in">
+            <CrossNavigationFooter CurrentPage="software" />
+        </section>
+    </div>
+
+@code {
+    /// <summary>
+    /// Bandera para mostrar/ocultar temporalmente la card "Proyectos Tecnicatura".
+    /// Cambiar a <c>true</c> para reactivar.
+    /// </summary>
+    private bool ShowTechnicaturaProject = false;
+
+    protected override void OnInitialized()
+    {
+        Lang.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Lang.OnChange -= StateHasChanged;
+    }
+}

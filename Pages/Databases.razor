@@ -1,0 +1,192 @@
+@page "/databases"
+@using PortfolioNaiquen.Shared.Components
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+<PageTitle>@Lang.T("navDatabases") - Naiquen Iturralde</PageTitle>
+
+<div class="portfolio-page">
+    <section class="page-hero fade-in">
+        <div class="hero-content">
+            <p class="page-eyebrow">@Lang.T("navDatabases")</p>
+            <h1 class="page-title">
+                <span class="gradient-text">@Lang.T("databasesPageTitle")</span>
+            </h1>
+            <p class="page-subtitle">@Lang.T("databasesPageSubtitle")</p>
+            <p class="page-intro">@Lang.T("databasesPageIntro")</p>
+        </div>
+    </section>
+
+    <section class="skills-strip fade-in" aria-labelledby="db-skills-title">
+        <h2 id="db-skills-title" class="skills-strip__title">@Lang.T("databasesSkillsTitle")</h2>
+        <div class="skills-strip__chips">
+            <span class="skill-chip">SQL Server</span>
+            <span class="skill-chip">SSMS</span>
+            <span class="skill-chip">PostgreSQL</span>
+            <span class="skill-chip">pgAdmin</span>
+            <span class="skill-chip">T-SQL</span>
+            <span class="skill-chip">Modelado relacional</span>
+            <span class="skill-chip">Normalización</span>
+            <span class="skill-chip">Consultas SQL</span>
+            <span class="skill-chip">Joins</span>
+            <span class="skill-chip">Views</span>
+            <span class="skill-chip">Stored Procedures</span>
+            <span class="skill-chip">Triggers</span>
+            <span class="skill-chip">Roles y permisos</span>
+            <span class="skill-chip">Auditoría</span>
+            <span class="skill-chip">Integridad referencial</span>
+        </div>
+    </section>
+
+    <section class="projects-section fade-in">
+        <div class="db-cards-grid">
+
+            @* ──────────────── CARD 1 · Love2Read ──────────────── *@
+            <article class="db-card glass">
+                <div class="db-card__body">
+                    <p class="db-card__meta">@Lang.T("dbL2RMeta")</p>
+                    <h2 class="db-card__title">@Lang.T("dbL2RTitle")</h2>
+
+                    <div class="db-card__section">
+                        <p class="db-card__text">@Lang.T("dbL2RDesc")</p>
+                    </div>
+
+                    <div class="db-card__section">
+                        <p class="db-card__label">@Lang.T("dbL2RFeaturesLabel")</p>
+                        <ul class="db-card__list">
+                            <li>@Lang.T("dbL2RFeature1")</li>
+                            <li>@Lang.T("dbL2RFeature2")</li>
+                            <li>@Lang.T("dbL2RFeature3")</li>
+                            <li>@Lang.T("dbL2RFeature4")</li>
+                            <li>@Lang.T("dbL2RFeature5")</li>
+                        </ul>
+                    </div>
+
+                    <div class="db-card__section">
+                        <p class="db-card__label">@Lang.T("dbL2RToolsLabel")</p>
+                        <div class="db-card__tools">
+                            <span class="tool-pill">@Lang.T("dbL2RTool1")</span>
+                            <span class="tool-pill">@Lang.T("dbL2RTool2")</span>
+                            <span class="tool-pill">@Lang.T("dbL2RTool3")</span>
+                            <span class="tool-pill">@Lang.T("dbL2RTool4")</span>
+                            <span class="tool-pill">@Lang.T("dbL2RTool5")</span>
+                        </div>
+                    </div>
+
+                    <div class="db-card__footer">
+                        <a href="/docs/DERLove2Read.drawio.pdf" target="_blank" rel="noopener noreferrer"
+                           class="db-card__button db-card__button--primary">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z" fill="none"
+                                      stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round" />
+                                <path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            @Lang.T("dbL2RDerButton")
+                        </a>
+                        <a href="/docs/CasosDeUsoLove2Read.drawio.pdf" target="_blank" rel="noopener noreferrer"
+                           class="db-card__button db-card__button--secondary">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                d="M9 12h6m-6 4h6m-6-8h6M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            </svg>
+                            @Lang.T("dbL2RUcButton")
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            @* ──────────────── CARD 2 · CryptoView ──────────────── *@
+            <article class="db-card glass">
+                <div class="db-card__body">
+                    <p class="db-card__meta">@Lang.T("dbCVMeta")</p>
+                    <h2 class="db-card__title">@Lang.T("dbCVTitle")</h2>
+
+                    <div class="db-card__section">
+                        <p class="db-card__text">@Lang.T("dbCVDesc")</p>
+                    </div>
+
+                    <div class="db-card__section">
+                        <p class="db-card__label">@Lang.T("dbCVFeaturesLabel")</p>
+                        <ul class="db-card__list">
+                            <li>@Lang.T("dbCVFeature1")</li>
+                            <li>@Lang.T("dbCVFeature2")</li>
+                            <li>@Lang.T("dbCVFeature3")</li>
+                            <li>@Lang.T("dbCVFeature4")</li>
+                            <li>@Lang.T("dbCVFeature5")</li>
+                        </ul>
+                    </div>
+
+                    <div class="db-card__section">
+                        <p class="db-card__label">@Lang.T("dbCVToolsLabel")</p>
+                        <div class="db-card__tools">
+                            <span class="tool-pill">@Lang.T("dbCVTool1")</span>
+                            <span class="tool-pill">@Lang.T("dbCVTool2")</span>
+                            <span class="tool-pill">@Lang.T("dbCVTool3")</span>
+                            <span class="tool-pill">@Lang.T("dbCVTool4")</span>
+                            <span class="tool-pill">@Lang.T("dbCVTool5")</span>
+                        </div>
+                    </div>
+
+                    <div class="db-card__footer">
+                        <a href="/docs/DERCrytoView.pdf" target="_blank" rel="noopener noreferrer"
+                           class="db-card__button db-card__button--primary">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5z" fill="none"
+                                      stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                      stroke-linejoin="round" />
+                                <path d="M14 3v5h5" fill="none" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            @Lang.T("dbCVDerButton")
+                        </a>
+                        <a href="/docs/CasosDeUsoCryptoView.pdf" target="_blank" rel="noopener noreferrer"
+                           class="db-card__button db-card__button--secondary">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                d="M9 12h6m-6 4h6m-6-8h6M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            </svg>
+                            @Lang.T("dbCVUcButton")
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="github-note fade-in">
+        <div class="note-content glass">
+            <p class="note-text">@Lang.T("databasesNote")</p>
+        </div>
+    </section>
+
+    <section class="page-cta fade-in">
+        <div class="cta-content">
+            <h2 class="cta-title">@Lang.T("databasesCtaTitle")</h2>
+            <p class="cta-text">@Lang.T("databasesCtaText")</p>
+            <MagicButton Label="@Lang.T("databasesCtaButton")" To="/" AdditionalClass="large" />
+        </div>
+    </section>
+
+    <section class="page-navigation fade-in">
+        <CrossNavigationFooter CurrentPage="databases" />
+    </section>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Lang.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Lang.OnChange -= StateHasChanged;
+    }
+}

@@ -1,0 +1,96 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Avoid concurrent deploys and force a single, ordered deployment.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Locate .csproj
+        # Discover the project file dynamically. This avoids hardcoding a name
+        # (e.g. PortfolioNaiquen.csproj, Portfolio.csproj, App.csproj) that may
+        # not match the file actually committed to the repository.
+        id: locate_csproj
+        run: |
+          echo "--- repo top-level ---"
+          ls -la
+          echo "--- searching for any .csproj (up to depth 2) ---"
+          CANDIDATE=$(find . -maxdepth 2 -type f -name "*.csproj" -not -path "*/bin/*" -not -path "*/obj/*" | head -n 1)
+          if [ -z "$CANDIDATE" ]; then
+            echo "ERROR: no .csproj found in the repository root or one level deep."
+            exit 1
+          fi
+          echo "Found project file: $CANDIDATE"
+          echo "PROJECT_PATH=$CANDIDATE" >> "$GITHUB_OUTPUT"
+
+      - name: Restore dependencies
+        run: dotnet restore "${{ steps.locate_csproj.outputs.PROJECT_PATH }}"
+
+      - name: Publish (Release)
+        # Using -p:PublishDir=release publishes the site directly into ./release
+        # (with release/index.html, release/_framework/...) instead of nesting
+        # everything under release/wwwroot/. That keeps the artifact path flat
+        # and predictable for the upload step.
+        run: dotnet publish "${{ steps.locate_csproj.outputs.PROJECT_PATH }}" -c Release -p:PublishDir=release --nologo
+
+      - name: Verify publish output
+        # Diagnostic step: prints the contents of the publish directory so any
+        # path mismatch (e.g. wrong base href, missing _framework/) is visible
+        # in the GitHub Actions logs.
+        run: |
+          echo "--- top-level contents of ./release ---"
+          ls -la release
+          echo "--- contents of release/_framework (first 20 entries) ---"
+          ls -la release/_framework 2>/dev/null | head -n 20 || echo "_framework/ not found"
+
+      - name: Fix base href for GitHub Pages
+        # Blazor WebAssembly uses <base href="/" /> in index.html.
+        # On GitHub Pages the site is served under /<REPO_NAME>/, so the base
+        # href must be rewritten to match the repository name.
+        # IMPORTANT: replace PortfolioNaiquen below with the actual repository
+        # name (case-sensitive) if it is different.
+        run: |
+          sed -i 's|<base href="/" />|<base href="/Portfolio/" />|' release/index.html
+
+      - name: Add .nojekyll
+        # Tells GitHub Pages to serve the site as static files (no Jekyll
+        # processing), which is required for Blazor's _framework folder and
+        # other underscored paths.
+        run: touch release/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: release
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

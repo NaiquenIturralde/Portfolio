@@ -1,0 +1,40 @@
+@inject NavigationManager Navigation
+
+<button class="magic-button @AdditionalClass" @onclick="HandleClick">
+    @if (!string.IsNullOrEmpty(Icon))
+    {
+        <span class="magic-button-icon">@Icon</span>
+    }
+    <span class="magic-button-text">@Label</span>
+    <span class="magic-button-glow"></span>
+</button>
+
+@code {
+    [Parameter]
+    public string Label { get; set; } = "Click me";
+    
+    [Parameter]
+    public string? Icon { get; set; }
+    
+    [Parameter]
+    public string? To { get; set; }
+    
+    [Parameter]
+    public string AdditionalClass { get; set; } = "";
+    
+    [Parameter]
+    public EventCallback OnClick { get; set; }
+    
+    private async Task HandleClick()
+    {
+        if (OnClick.HasDelegate)
+        {
+            await OnClick.InvokeAsync();
+        }
+        
+        if (!string.IsNullOrEmpty(To))
+        {
+            Navigation.NavigateTo(To);
+        }
+    }
+}

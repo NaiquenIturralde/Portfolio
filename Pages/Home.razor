@@ -1,0 +1,229 @@
+﻿@page "/"
+@using PortfolioNaiquen.Shared.Components
+@using PortfolioNaiquen.Shared
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+<PageTitle>@Lang.T("pageTitle")</PageTitle>
+
+<ContactModal @ref="contactModal" />
+
+<div class="home-page">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <!-- Hero Main: Two Columns -->
+        <div class="hero-main fade-in">
+            <!-- Left Column: Profile Photo Card -->
+            <div class="hero-right">
+                <div class="profile-card">
+                    <img src="@ProfileImage.Url" alt="@ProfileImage.Alt" class="profile-photo" />
+                </div>
+            </div>
+
+            <!-- Right Column: Title and Main Phrase -->
+            <div class="hero-left">
+                <h1 class="hero-title">
+                    <span class="gradient-text">Naiquen Anael Iturralde</span>
+                </h1>
+                <h2 class="hero-subtitle">
+                    @Lang.T("heroSubtitle")
+                </h2>
+            </div>
+        </div>
+
+        <!-- Hero Description: Full Width -->
+        <div class="hero-description-block fade-in">
+            <p class="hero-description">
+                @Lang.T("heroDescription")
+            </p>
+        </div>
+
+        <!-- Hero Actions -->
+        <div class="hero-actions fade-in">
+            <MagicButton Label="@Lang.T("viewProjects")" To="/games" AdditionalClass="hero" />
+            <MagicButton Label="@Lang.T("contact")" AdditionalClass="hero secondary" OnClick="OpenContactModal" />
+        </div>
+
+        
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section fade-in">
+        <div class="stats-grid">
+            <div class="stat-card glass hover-lift">
+                <div class="stat-number gradient-text">@Lang.T("stat1Title")</div>
+                <div class="stat-label">@Lang.T("stat1Label")</div>
+            </div>
+            <div class="stat-card glass hover-lift">
+                <div class="stat-number gradient-text">@Lang.T("stat2Title")</div>
+                <div class="stat-label">@Lang.T("stat2Label")</div>
+            </div>
+            <div class="stat-card glass hover-lift">
+                <div class="stat-number gradient-text">@Lang.T("stat3Title")</div>
+                <div class="stat-label">@Lang.T("stat3Label")</div>
+            </div>
+            <div class="stat-card glass hover-lift">
+                <div class="stat-number gradient-text">@Lang.T("stat4Title")</div>
+                <div class="stat-label">@Lang.T("stat4Label")</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Extended Section -->
+    <section class="about-extended-section fade-in">
+        <AboutExtended />
+    </section>
+
+    <!-- Featured Project: CryptoView -->
+    <section class="featured-section">
+        <div class="section-header fade-in">
+            <h2 class="section-title">
+                @Lang.T("featuredSectionTitle") <span class="gradient-text">@Lang.T("featuredHighlight")</span>
+            </h2>
+            <p class="section-description">
+                @Lang.T("featuredSectionDesc")
+            </p>
+        </div>
+
+        <div class="featured-hero fade-in glass">
+            <!-- Left: Media -->
+            <div class="featured-hero__media">
+                <div class="featured-hero__mockup placeholder">
+                    <img src="img/OjoCryptoView.png" alt="OjoCryptoView" />
+
+                </div>
+            </div>
+
+            <!-- Right: Info -->
+            <div class="featured-project-info">
+                <span class="featured-badge">@Lang.T("featuredBadge")</span>
+                <h3 class="featured-project-title">CryptoView</h3>
+                <p class="featured-project-desc">
+                    @Lang.T("featuredProjectDesc")
+                </p>
+
+                <ul class="featured-features">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        @Lang.T("featuredFeature1")
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        @Lang.T("featuredFeature2")
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        @Lang.T("featuredFeature3")
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        @Lang.T("featuredFeature4")
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                        @Lang.T("featuredFeature5")
+                    </li>
+                </ul>
+
+                <div class="featured-project-actions">
+                    <a href="https://www.youtube.com/watch?v=Ly_RvPX1kv4" target="_blank" rel="noopener noreferrer"
+                       class="featured-btn featured-btn-primary" aria-label="Ver demo de CryptoView">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3" />
+                        </svg>
+                        @Lang.T("viewDemo")
+                    </a>
+                    <a href="https://github.com/NaiquenIturralde/CryptoView" target="_blank" rel="noopener noreferrer"
+                       class="featured-btn featured-btn-secondary" aria-label="Ver código de CryptoView en GitHub">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                        </svg>
+                        @Lang.T("viewCode")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access Section -->
+    <section class="quick-access-section fade-in">
+        <header class="quick-access-header">
+            <h2 class="quick-access-title gradient-text">@Lang.T("homeQuickTitle")</h2>
+            <p class="quick-access-subtitle">@Lang.T("homeQuickSubtitle")</p>
+        </header>
+
+        <div class="quick-access-grid">
+            <a href="/software" class="quick-access-card-link" aria-label="@Lang.T("homeQuickSoftwareTitle")">
+                <article class="quick-access-card glass hover-lift">
+                    <h3 class="quick-access-card-title">@Lang.T("homeQuickSoftwareTitle")</h3>
+                    <p class="quick-access-card-desc">@Lang.T("homeQuickSoftwareDesc")</p>
+                    <span class="quick-access-cta">
+                        @Lang.T("homeQuickButton")
+                        <span class="quick-access-arrow" aria-hidden="true">→</span>
+                    </span>
+                </article>
+            </a>
+            <a href="/games" class="quick-access-card-link" aria-label="@Lang.T("homeQuickGamesTitle")">
+                <article class="quick-access-card glass hover-lift">
+                    <h3 class="quick-access-card-title">@Lang.T("homeQuickGamesTitle")</h3>
+                    <p class="quick-access-card-desc">@Lang.T("homeQuickGamesDesc")</p>
+                    <span class="quick-access-cta">
+                        @Lang.T("homeQuickButton")
+                        <span class="quick-access-arrow" aria-hidden="true">→</span>
+                    </span>
+                </article>
+            </a>
+            <a href="/databases" class="quick-access-card-link" aria-label="@Lang.T("homeQuickDatabasesTitle")">
+                <article class="quick-access-card glass hover-lift">
+                    <h3 class="quick-access-card-title">@Lang.T("homeQuickDatabasesTitle")</h3>
+                    <p class="quick-access-card-desc">@Lang.T("homeQuickDatabasesDesc")</p>
+                    <span class="quick-access-cta">
+                        @Lang.T("homeQuickButton")
+                        <span class="quick-access-arrow" aria-hidden="true">→</span>
+                    </span>
+                </article>
+            </a>
+            <a href="/certificados" class="quick-access-card-link" aria-label="@Lang.T("homeQuickCertificatesTitle")">
+                <article class="quick-access-card glass hover-lift">
+                    <h3 class="quick-access-card-title">@Lang.T("homeQuickCertificatesTitle")</h3>
+                    <p class="quick-access-card-desc">@Lang.T("homeQuickCertificatesDesc")</p>
+                    <span class="quick-access-cta">
+                        @Lang.T("homeQuickButton")
+                        <span class="quick-access-arrow" aria-hidden="true">→</span>
+                    </span>
+                </article>
+            </a>
+        </div>
+    </section>
+</div>
+
+@code {
+    private ContactModal? contactModal;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Lang.OnChange += StateHasChanged;
+        await Lang.InitializeAsync();
+    }
+
+    private void OpenContactModal()
+    {
+        contactModal?.Open();
+    }
+
+    public void Dispose()
+    {
+        Lang.OnChange -= StateHasChanged;
+    }
+}

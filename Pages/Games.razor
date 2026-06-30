@@ -1,0 +1,103 @@
+@page "/games"
+@using PortfolioNaiquen.Shared.Components
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+<PageTitle>@Lang.T("navGames") - Naiquen Iturralde</PageTitle>
+
+<div class="portfolio-page">
+
+    <section class="page-hero fade-in">
+        <div class="hero-content">
+            <h1 class="page-title">
+                <span class="gradient-text">@Lang.T("gamesPageTitle")</span>
+            </h1>
+            <p class="page-intro">@Lang.T("gamesPageIntro")</p>
+        </div>
+    </section>
+
+    <section class="projects-section fade-in">
+        <div class="projects-grid">
+
+            <ProjectCard Title="Oceánida" MetaText="@Lang.T("oceánidaMeta")" Description="@Lang.T("oceánidaDesc")"
+                         Tags="@(new List<string> { "GDevelop", "Educativo", "Ambiental", "2D" })"
+                         Image="img/OceánidaPortada.png" Link="https://naiquen-anael-iturralde.itch.io/ocenidaweb"
+                         FigmaLink="https://www.figma.com/board/c2kIjlxsyZGvZAsH1bN1ht/Oce%C3%A1nida---videojuego-final?node-id=0-1&t=ikKJc9333UlzSsmC-1" />
+
+            <ProjectCard Title="Bosque Encantado" MetaText="@Lang.T("bosqueEncantadoMeta")"
+                         Description="@Lang.T("bosqueEncantadoDesc")"
+                         Tags="@(new List<string> { "Playground", "Decisiones", "Narrativa", "2D" })"
+                         Image="img/PortadaBosqueEncantado.png" Link="https://rpgplayground.com/game/bosque-encantado-4/"
+                         FigmaLink="https://www.figma.com/board/PvTxc6QLNjUpwdKaj4v7xb/Bosque-encantado?node-id=0-1&t=lHAZD0WLcJqTzKJP-1" />
+
+            <ProjectCard Title="Pac Team" MetaText="@Lang.T("pacTeamMeta")" Description="@Lang.T("pacTeamDesc")"
+                         Tags="@(new List<string> { "Unity", "Cooperativo", "Puzzle", "Multiplayer" })"
+                         Image="img/PortadaPacTeam.png" Expandable="true">
+
+                <CustomActions>
+                    <ImageCarousel Images="@pacTeamImages" />
+
+                    <FigmaPlaceholder ImageSrc="img/PacManDurmiendo.png" Title="@Lang.T("figmaInProcess")" OnOpen="@(() =>
+                                                                                                                                          {
+                                                                                                                                              currentImageSrc = "img/PacManDurmiendo.png";
+                                                                                                                                              currentImageTitle = Lang.T("figmaInProcess");
+                                                                                                                                              showOverlay = true;
+                                                                                                                                          })" />
+                </CustomActions>
+
+            </ProjectCard>
+
+        </div>
+    </section>
+
+    @if (showOverlay)
+    {
+        <div class="fullscreen-overlay" @onclick="CloseOverlay">
+
+            <button class="close-btn" @onclick="CloseOverlay" aria-label="@Lang.T("close")">
+                ✕
+            </button>
+
+            <img src="@currentImageSrc" alt="@currentImageTitle" class="fullscreen-image" @onclick:stopPropagation />
+
+
+        </div>
+    }
+
+    <section class="page-navigation fade-in">
+        <CrossNavigationFooter CurrentPage="games" />
+    </section>
+
+</div>
+
+@code {
+    private bool showOverlay = false;
+    private string currentImageSrc = "";
+    private string currentImageTitle = "";
+
+    private List<string> pacTeamImages = new()
+{
+    "img/1.png",
+    "img/2.png",
+    "img/3.png",
+    "img/4.png",
+    "img/5.png",
+    "img/6.png",
+    "img/7.png"
+};
+
+    protected override void OnInitialized()
+    {
+        Lang.OnChange += StateHasChanged;
+    }
+
+    private void CloseOverlay()
+    {
+        showOverlay = false;
+    }
+
+    public void Dispose()
+    {
+        Lang.OnChange -= StateHasChanged;
+    }
+}

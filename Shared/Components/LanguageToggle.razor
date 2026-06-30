@@ -1,0 +1,40 @@
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+<div class="language-toggle @(Compact ? "language-toggle--compact" : "")" role="radiogroup"
+     aria-label="@Lang.T("langSelectorAria")">
+    <button class="lang-opt @(Lang.CurrentLanguage == "es" ? "active" : "")"
+            @onclick='() => SwitchLanguage("es")'
+            aria-label="@Lang.T("langEsAria")"
+            aria-checked="@(Lang.CurrentLanguage == "es").ToString().ToLower()"
+            role="radio" tabindex="0">
+        ESP
+    </button>
+    <button class="lang-opt @(Lang.CurrentLanguage == "en" ? "active" : "")"
+            @onclick='() => SwitchLanguage("en")'
+            aria-label="@Lang.T("langEnAria")"
+            aria-checked="@(Lang.CurrentLanguage == "en").ToString().ToLower()"
+            role="radio" tabindex="0">
+        ENG
+    </button>
+</div>
+
+@code {
+    [Parameter]
+    public bool Compact { get; set; } = false;
+
+    protected override void OnInitialized()
+    {
+        Lang.OnChange += StateHasChanged;
+    }
+
+    private async Task SwitchLanguage(string lang)
+    {
+        await Lang.SetLanguageAsync(lang);
+    }
+
+    public void Dispose()
+    {
+        Lang.OnChange -= StateHasChanged;
+    }
+}

@@ -1,0 +1,111 @@
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+@*
+    CrossNavigationFooter
+    --------------------------------------------------------------
+    Footer de navegación cruzada entre las páginas de especialidades.
+    Detecta automáticamente la página actual (vía NavigationManager)
+    y renderiza únicamente las tarjetas de las OTRAS dos especialidades,
+    excluyendo la actual.
+
+    Rutas reconocidas:
+      - /games → excluye "Games", muestra "Software" + "Databases" + "Certificados"
+      - /software → excluye "Software", muestra "Games" + "Databases" + "Certificados"
+      - /databases → excluye "Databases", muestra "Games" + "Software" + "Certificados"
+      - /certificados → excluye "Certificados", muestra "Games" + "Software" + "Databases"
+
+    Cualquier otra ruta muestra todas las tarjetas como fallback.
+*@
+
+<section class="cross-nav-footer fade-in">
+    <header class="cross-nav-header">
+        <h2 class="cross-nav-title">@Lang.T("crossNavTitle")</h2>
+        <p class="cross-nav-subtitle">@Lang.T("crossNavSubtitle")</p>
+    </header>
+
+    <div class="cross-nav-grid">
+        @foreach (var item in _items)
+        {
+            <a href="@item.Href" class="cross-nav-card-link" aria-label="@item.Title">
+                <article class="cross-nav-card glass hover-lift">
+                    <h3 class="cross-nav-card-title">@item.Title</h3>
+                    <p class="cross-nav-card-description">@item.Description</p>
+                    <span class="cross-nav-arrow" aria-hidden="true">→</span>
+                </article>
+            </a>
+        }
+    </div>
+</section>
+
+@code {
+    [Parameter] public string? CurrentPage { get; set; }
+
+    [Inject] private NavigationManager Nav { get; set; } = default!;
+
+    private record NavItem(string Key, string Href);
+
+    private IReadOnlyList<NavItem> _all = new List<NavItem>
+    {
+        new("games", "/games"),
+        new("software", "/software"),
+        new("databases", "/databases"),
+        new("certificados", "/certificados"),
+    };
+
+    private IEnumerable<(string Title, string Description, string Href)> _items =
+        Enumerable.Empty<(string, string, string)>();
+
+    protected override void OnInitialized()
+    {
+        // 1) Resolver el identificador canónico de la página actual ("games" | "software" | "databases" | "").
+        var raw = (CurrentPage ?? string.Empty).Trim();
+        string current = raw.ToLowerInvariant() switch
+        {
+            "games" or "/games" => "games",
+            "software" or "/software" => "software",
+            "databases" or "/databases" => "databases",
+            "certificados" or "/certificados" => "certificados",
+            _ => InferFromUri()
+        };
+
+        // 2) Si el padre no nos dijo nada y tampoco pudimos inferirlo, mostramos las 3 tarjetas
+        // para no dejar al usuario sin navegación.
+        if (string.IsNullOrEmpty(current))
+        {
+            _items = _all.Select(BuildItem).ToList();
+        }
+        else
+        {
+            // 3) FILTRO ESTRICTO: excluye cualquier item cuyo Key coincida con la página actual
+            // (case-insensitive, comparador ordinal para evitar surprises culturales).
+            _items = _all
+                .Where(x => !string.Equals(x.Key, current, StringComparison.OrdinalIgnoreCase))
+                .Select(BuildItem)
+                .ToList();
+        }
+
+        Lang.OnChange += StateHasChanged;
+    }
+
+    private string InferFromUri()
+    {
+        var path = Nav.Uri.ToLowerInvariant();
+        if (path.Contains("/certificados")) return "certificados";
+        if (path.Contains("/databases")) return "databases";
+        if (path.Contains("/software")) return "software";
+        if (path.Contains("/games")) return "games";
+        return string.Empty;
+    }
+
+    private (string Title, string Description, string Href) BuildItem(NavItem x) => (
+        Title: Lang.T("nav" + Capitalize(x.Key)),
+        Description: Lang.T("crossNav" + Capitalize(x.Key) + "Desc"),
+        Href: x.Href
+    );
+
+    private static string Capitalize(string s) =>
+        string.IsNullOrEmpty(s) ? s : char.ToUpperInvariant(s[0]) + s[1..];
+
+    public void Dispose() => Lang.OnChange -= StateHasChanged;
+}

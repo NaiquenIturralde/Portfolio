@@ -1,0 +1,84 @@
+﻿@using PortfolioNaiquen.Shared.Components
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+<nav class="navbar">
+    <div class="navbar-container">
+        <NavLink class="navbar-brand" href="/" Match="NavLinkMatch.All">
+            <span class="brand-text gradient-text">Naiquen</span>
+            <span class="brand-dot">.</span>
+        </NavLink>
+
+        <button class="navbar-toggler" @onclick="ToggleNavMenu" aria-label="@Lang.T("toggleNav")">
+            <span class="toggler-line"></span>
+            <span class="toggler-line"></span>
+            <span class="toggler-line"></span>
+        </button>
+
+        <div class="navbar-menu @NavMenuCssClass">
+            <NavLink class="nav-link" href="/" Match="NavLinkMatch.All" @onclick="CloseNavMenu">
+                <span class="nav-link-text">@Lang.T("navHome")</span>
+                <span class="nav-link-underline"></span>
+            </NavLink>
+
+            <NavLink class="nav-link" href="/games" @onclick="CloseNavMenu">
+                <span class="nav-link-text">@Lang.T("navGames")</span>
+                <span class="nav-link-underline"></span>
+            </NavLink>
+
+            <NavLink class="nav-link" href="/software" @onclick="CloseNavMenu">
+                <span class="nav-link-text">@Lang.T("navSoftware")</span>
+                <span class="nav-link-underline"></span>
+            </NavLink>
+
+            @if (ShowDesignLink)
+            {
+                <NavLink class="nav-link" href="/design" @onclick="CloseNavMenu">
+                    <span class="nav-link-text">@Lang.T("navDesign")</span>
+                    <span class="nav-link-underline"></span>
+                </NavLink>
+            }
+
+            <NavLink class="nav-link" href="/databases" @onclick="CloseNavMenu">
+                <span class="nav-link-text">@Lang.T("navDatabases")</span>
+                <span class="nav-link-underline"></span>
+            </NavLink>
+
+            <NavLink class="nav-link" href="/certificados" @onclick="CloseNavMenu">
+                <span class="nav-link-text">@Lang.T("navCertificados")</span>
+                <span class="nav-link-underline"></span>
+            </NavLink>
+
+            <LanguageToggle Compact="true" />
+        </div>
+    </div>
+</nav>
+
+@code {
+    // ⚠ Cambiar a true para volver a mostrar el link "Diseño" en el navbar
+    private const bool ShowDesignLink = false;
+
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapsed" : "expanded";
+
+    protected override void OnInitialized()
+    {
+        Lang.OnChange += StateHasChanged;
+    }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void CloseNavMenu()
+    {
+        collapseNavMenu = true;
+    }
+
+    public void Dispose()
+    {
+        Lang.OnChange -= StateHasChanged;
+    }
+}

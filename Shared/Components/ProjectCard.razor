@@ -1,0 +1,98 @@
+@using PortfolioNaiquen.Shared.Components
+
+@code {
+    [Parameter] public string? Image { get; set; }
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? MetaText { get; set; }
+    [Parameter] public string? Description { get; set; }
+    [Parameter] public List<string>? Tags { get; set; }
+    [Parameter] public string? Link { get; set; }
+    [Parameter] public string? FigmaLink { get; set; }
+    [Parameter] public string? DemoLink { get; set; }
+    [Parameter] public string? CodeLink { get; set; }
+    [Parameter] public RenderFragment? CustomActions { get; set; }
+    [Parameter] public bool Expandable { get; set; }
+
+    private bool _isExpanded;
+    private readonly string _actionsId = "actions-" + Guid.NewGuid().ToString("N");
+
+    private void ToggleExpand() => _isExpanded = !_isExpanded;
+}
+
+<div class="project-card glass hover-lift">
+
+    @if (!string.IsNullOrEmpty(Image))
+    {
+        <div class="project-card-image">
+            <img src="@Image" alt="@Title" loading="lazy" />
+            <div class="project-card-overlay"></div>
+        </div>
+    }
+
+    <div class="project-card-content">
+        <h2 class="game-title">@Title</h2>
+
+        @if (!string.IsNullOrEmpty(MetaText))
+        {
+            <p class="game-meta">@MetaText</p>
+        }
+
+        <p class="game-description">@Description</p>
+
+        @if (Tags != null && Tags.Any())
+        {
+            <div class="game-tags">
+                @foreach (var tag in Tags)
+                {
+                    <span class="tag">@tag</span>
+                }
+            </div>
+        }
+
+        <div class="project-card-buttons">
+            @if (Expandable)
+            {
+                <button type="button" class="project-button toggle-button @(_isExpanded ? "is-open" : "")"
+                        aria-expanded="@_isExpanded" aria-controls="@_actionsId" @onclick="ToggleExpand">
+                    <span>Ver proyecto</span>
+                    <svg class="toggle-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                         aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+            }
+            else
+            {
+                @if (!string.IsNullOrWhiteSpace(Link))
+                {
+                    <a href="@Link" class="project-button" target="_blank" rel="noopener noreferrer">Ver Proyecto</a>
+                }
+                @if (!string.IsNullOrWhiteSpace(DemoLink))
+                {
+                    <a href="@DemoLink" class="project-button demo-button" target="_blank" rel="noopener noreferrer">Ver
+                        Demo</a>
+                    }
+                    @if (!string.IsNullOrWhiteSpace(CodeLink))
+                    {
+                        <a href="@CodeLink" class="project-button code-button" target="_blank" rel="noopener noreferrer">Ver
+                            Código</a>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(FigmaLink))
+                        {
+                            <a href="@FigmaLink" class="project-button figma-button" target="_blank" rel="noopener noreferrer">Ver
+                                Figma</a>
+                            }
+                        }
+                    </div>
+
+                    @if (CustomActions != null)
+                    {
+                        <div id="@_actionsId" class="project-card-custom-actions @(_isExpanded ? "is-open" : "")" role="region"
+                             aria-label="Previsualización de @Title">
+                            <div class="project-card-custom-actions-inner">
+                                @CustomActions
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>

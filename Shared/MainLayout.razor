@@ -1,0 +1,124 @@
+﻿@using PortfolioNaiquen.Shared.Components
+@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+<div class="page">
+    <header class="main-header glass-panel">
+        <nav class="top-nav">
+            <div class="nav-container">
+                <a href="/" class="nav-brand">
+                    <span class="brand-name gradient-text">Naiquen Iturralde</span>
+                    <span class="brand-separator">/</span>
+                    <span class="brand-subtitle">@Lang.T("brandSubtitle")</span>
+                </a>
+
+                <button class="nav-toggle @(menuOpen ? "is-active" : "")" @onclick="ToggleMenu"
+                        aria-label="@(menuOpen ? Lang.T("menuOpen") : Lang.T("menuClosed"))"
+                        aria-expanded="@(menuOpen.ToString().ToLower())">
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                    <span class="toggle-line"></span>
+                </button>
+
+                <div class="nav-links @MenuCssClass">
+                    <a href="/" class="nav-link @GetActiveClass("/")" @onclick="CloseMenu">
+                        <span class="link-text">@Lang.T("navHome")</span>
+                    </a>
+                    <a href="/games" class="nav-link @GetActiveClass("/games")" @onclick="CloseMenu">
+                        <span class="link-text">@Lang.T("navGames")</span>
+                    </a>
+                    <a href="/software" class="nav-link @GetActiveClass("/software")" @onclick="CloseMenu">
+                        <span class="link-text">@Lang.T("navSoftware")</span>
+                    </a>
+                    @if (ShowDesignSection)
+                    {
+                        <a href="/design" class="nav-link @GetActiveClass("/design")" @onclick="CloseMenu">
+                            <span class="link-text">@Lang.T("navDesign")</span>
+                        </a>
+                    }
+                    <a href="/databases" class="nav-link @GetActiveClass("/databases")" @onclick="CloseMenu">
+                        <span class="link-text">@Lang.T("navDatabases")</span>
+                    </a>
+                    <a href="/certificados" class="nav-link @GetActiveClass("/certificados")" @onclick="CloseMenu">
+                        <span class="link-text">@Lang.T("navCertificados")</span>
+                    </a>
+
+                    <LanguageToggle Compact="true" />
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="nav-overlay @(menuOpen ? "is-visible" : "")" @onclick="CloseMenu"></div>
+
+    <main class="main-content">
+        <article class="content-wrapper">
+            @Body
+        </article>
+    </main>
+
+    <footer class="main-footer glass-panel">
+        <div class="footer-content">
+            <p>@Lang.T("footerText")</p>
+
+        </div>
+    </footer>
+</div>
+
+@code {
+    // ⚠ Cambiar a true para volver a mostrar la sección "Diseño" en el navbar
+    private const bool ShowDesignSection = false;
+
+    private bool menuOpen = false;
+    private string currentPath = "/";
+
+    private string MenuCssClass => menuOpen ? "nav-open" : "nav-closed";
+
+    protected override async Task OnInitializedAsync()
+    {
+        Navigation.LocationChanged += OnLocationChanged;
+        currentPath = new Uri(Navigation.Uri).AbsolutePath;
+        Lang.OnChange += StateHasChanged;
+        await Lang.InitializeAsync();
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        currentPath = new Uri(e.Location).AbsolutePath;
+        StateHasChanged();
+    }
+
+    private string GetActiveClass(string path)
+    {
+        if (path == "/" && currentPath == "/")
+            return "active";
+
+        if (path != "/" && currentPath.StartsWith(path, StringComparison.OrdinalIgnoreCase))
+            return "active";
+
+        return "";
+    }
+
+    private void ToggleMenu()
+    {
+        menuOpen = !menuOpen;
+    }
+
+    private void CloseMenu()
+    {
+        menuOpen = false;
+    }
+
+    private async Task SwitchLanguage(string lang)
+    {
+        await Lang.SetLanguageAsync(lang);
+    }
+
+    public void Dispose()
+    {
+        Navigation.LocationChanged -= OnLocationChanged;
+        Lang.OnChange -= StateHasChanged;
+    }
+}

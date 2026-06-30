@@ -1,0 +1,157 @@
+/* ============================================================
+   CrossNavigationFooter — CSS scopeado
+   - Layout responsive: 1 columna en mobile, 2 columnas en desktop
+   - Centrado perfecto del grid y de las cards
+   - Reutiliza utilidades globales: .glass y .hover-lift
+   ============================================================ */
+
+.cross-nav-footer {
+    width: 100%;
+    max-width: 1100px;
+    margin: 4rem auto 2rem;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* ---------- Header ---------- */
+.cross-nav-header {
+    margin-bottom: 2.5rem;
+}
+
+.cross-nav-title {
+    font-size: clamp(1.5rem, 2.4vw + 1rem, 2.25rem);
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    background: var(--gradient-primary, linear-gradient(135deg, #a78bfa 0%, #d946ef 100%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.cross-nav-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+    margin: 0 auto;
+    max-width: 560px;
+    line-height: 1.5;
+}
+
+/* ---------- Grid de tarjetas ----------
+   Mobile-first: 1 columna.
+   ≥768px (md): 2 columnas centradas, con gap armónico.        */
+.cross-nav-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    justify-items: center;   /* centra cada card en su celda */
+    align-items: stretch;    /* iguala alturas */
+}
+
+@media (min-width: 768px) {
+    .cross-nav-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+        max-width: 820px;     /* limita el ancho y mantiene el centrado */
+        margin: 0 auto;
+    }
+}
+
+/* ---------- Link que envuelve la card ---------- */
+.cross-nav-card-link {
+    display: block;
+    width: 100%;
+    max-width: 380px;        /* tope visual en mobile/desktop */
+    text-decoration: none;
+    color: inherit;
+    border-radius: 20px;
+    outline-offset: 4px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cross-nav-card-link:focus-visible {
+    outline: 2px solid var(--accent, #a78bfa);
+}
+
+.cross-nav-card-link:hover {
+    transform: translateY(-4px);
+}
+
+/* ---------- Card ---------- */
+.cross-nav-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Padding top mayor para compensar la ausencia del icono decorativo
+       y mantener la card visualmente equilibrada y centrada. */
+    padding: 2.5rem 1.75rem 2rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.85rem;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.cross-nav-card:hover {
+    border-color: var(--glass-border-bright, rgba(167, 139, 250, 0.5));
+    box-shadow: var(--shadow-card-hover, 0 12px 40px rgba(124, 58, 237, 0.25));
+}
+
+.cross-nav-card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-primary, #fff);
+    /* sutil acento gradiente para jerarquizar el título al ser lo primero */
+    background: var(--gradient-primary, linear-gradient(135deg, #a78bfa 0%, #d946ef 100%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.cross-nav-card-description {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.75));
+    margin: 0;
+    /* limita a 3 líneas para igualar alturas entre cards */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Flecha CTA */
+.cross-nav-arrow {
+    margin-top: auto;
+    font-size: 1.5rem;
+    color: var(--accent, #a78bfa);
+    transition: transform 0.3s ease;
+}
+
+.cross-nav-card:hover .cross-nav-arrow {
+    transform: translateX(6px);
+}
+
+/* ---------- Accesibilidad: reduce motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    .cross-nav-card-link,
+    .cross-nav-card,
+    .cross-nav-arrow {
+        transition: none;
+    }
+
+    .cross-nav-card-link:hover,
+    .cross-nav-card:hover {
+        transform: none;
+    }
+
+    .cross-nav-card:hover .cross-nav-arrow {
+        transform: none;
+    }
+}

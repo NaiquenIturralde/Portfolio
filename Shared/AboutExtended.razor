@@ -1,0 +1,67 @@
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+<div class="about-extended-wrapper">
+    <button class="expand-button @(isExpanded ? "active" : "")" @onclick="ToggleExpanded"
+            aria-expanded="@(isExpanded.ToString().ToLower())" aria-label="@Lang.T("aboutButton")">
+        <span class="button-content">
+            <span class="button-icon">@(isExpanded ? "▼" : "▶")</span>
+            <span class="button-text">@Lang.T("aboutButton")</span>
+        </span>
+    </button>
+
+    <div class="about-panel @(isExpanded ? "expanded" : "collapsed")">
+        <div class="panel-content">
+            <!-- Photo Section -->
+            <div class="about-photo-container">
+                <img src="/img/Foto de Naiquen.jpg" alt="Naiquen Iturralde" class="about-photo" />
+            </div>
+
+            <!-- Single Language Content via Lang.T() -->
+            <div class="about-content @transitionClass">
+                <div class="about-text">
+                    <p>@Lang.T("aboutExtendedP1")</p>
+                    <p>@Lang.T("aboutExtendedP2")</p>
+                    <p>@Lang.T("aboutExtendedP3")</p>
+                    <p>@Lang.T("aboutExtendedP4")</p>
+                    <p>@Lang.T("aboutExtendedP5")</p>
+                    <ul class="skills-list">
+                        <li>@Lang.T("aboutExtendedLaw1")</li>
+                        <li>@Lang.T("aboutExtendedLaw2")</li>
+                        <li>@Lang.T("aboutExtendedLaw3")</li>
+                        <li>@Lang.T("aboutExtendedLaw4")</li>
+                    </ul>
+                    <p>@Lang.T("aboutExtendedP6")</p>
+                </div>
+
+                <div class="interests-section">
+                    <h3 class="section-title">@Lang.T("aboutExtendedInterestsTitle")</h3>
+                    <div class="interests-text">
+                        <p>@Lang.T("aboutExtendedInterestsP1")</p>
+                        <p>@Lang.T("aboutExtendedInterestsP2")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    private bool isExpanded = false;
+    private string transitionClass = "";
+
+    protected override void OnInitialized()
+    {
+        Lang.OnChange += StateHasChanged;
+    }
+
+    private void ToggleExpanded()
+    {
+        isExpanded = !isExpanded;
+    }
+
+    public void Dispose()
+    {
+        Lang.OnChange -= StateHasChanged;
+    }
+}

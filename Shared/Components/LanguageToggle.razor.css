@@ -1,0 +1,61 @@
+/* ============================================
+   LANGUAGE TOGGLE — VIOLET NEON PILL STYLE
+   ============================================ */
+
+.language-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 999px;
+    background: rgba(139, 92, 246, 0.12);
+    border: 1px solid rgba(168, 85, 247, 0.35);
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.18);
+    flex-shrink: 0;
+}
+
+.language-toggle .lang-opt {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 999px;
+    padding: 7px 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #d8c7ff;
+    background: transparent;
+    transition: all 0.25s ease;
+    font-family: inherit;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.language-toggle .lang-opt.active {
+    color: #ffffff;
+    background: linear-gradient(135deg, #8b5cf6, #d946ef);
+    box-shadow: 0 0 18px rgba(217, 70, 239, 0.45);
+}
+
+.language-toggle .lang-opt:hover:not(.active) {
+    color: #ffffff;
+    background: rgba(168, 85, 247, 0.22);
+}
+
+.language-toggle .lang-opt:focus-visible {
+    box-shadow: 0 0 0 2px #a78bfa;
+}
+
+/* ── Compact variant (navbar) ── */
+.language-toggle--compact .lang-opt {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+}
+
+/* ── Responsive mobile ── */
+@media (max-width: 767px) {
+    .language-toggle--compact {
+        margin-top: 12px;
+        width: fit-content;
+        align-self: center;
+    }
+}

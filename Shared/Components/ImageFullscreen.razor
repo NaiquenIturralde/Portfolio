@@ -1,0 +1,45 @@
+@namespace PortfolioNaiquen.Shared.Components
+
+<div class="image-fullscreen-wrapper">
+    <img src="@ImageSrc" 
+         alt="@Alt" 
+         class="image-thumbnail" 
+         @onclick="OpenFullscreen" />
+    
+    @if (isFullscreenOpen)
+    {
+        <div class="fullscreen-overlay" @onclick="CloseFullscreen">
+            <button class="close-button" @onclick="CloseFullscreen" aria-label="Cerrar">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            
+            <div class="fullscreen-image-container" @onclick:stopPropagation="true">
+                <img src="@ImageSrc" 
+                     alt="@Alt" 
+                     class="fullscreen-image" />
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string ImageSrc { get; set; } = "";
+    
+    [Parameter]
+    public string Alt { get; set; } = "Imagen";
+    
+    private bool isFullscreenOpen = false;
+    
+    private void OpenFullscreen()
+    {
+        isFullscreenOpen = true;
+    }
+    
+    private void CloseFullscreen()
+    {
+        isFullscreenOpen = false;
+    }
+}

@@ -1,0 +1,304 @@
+/* ============================================
+   MODAL OVERLAY
+   ============================================ */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: fadeInOverlay 0.3s ease-out;
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   MODAL CONTAINER
+   ============================================ */
+
+.modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    background: rgba(0, 0, 0, 0.68);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px;
+    padding: 40px;
+    border: 2px solid #d8b2ff;
+    box-shadow: 
+        0 0 0 1px rgba(186, 145, 255, 0.25),
+        0 20px 40px rgba(0, 0, 0, 0.6);
+    animation: modalAppear 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.85);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Animación de flotación sutil */
+.modal-container {
+    animation: modalAppear 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), 
+               modalFloat 3s ease-in-out infinite;
+}
+
+@keyframes modalFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-5px) scale(1);
+    }
+}
+
+/* ============================================
+   CLOSE BUTTON
+   ============================================ */
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #d8b2ff;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #d8b2ff;
+    padding: 0;
+}
+
+.modal-close:hover {
+    background: rgba(216, 178, 255, 0.15);
+    border-color: #e2caff;
+    transform: rotate(90deg);
+    box-shadow: 0 0 20px rgba(178, 101, 255, 0.5);
+}
+
+.modal-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ============================================
+   MODAL CONTENT
+   ============================================ */
+
+.modal-content {
+    position: relative;
+    z-index: 1;
+}
+
+.modal-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #e2caff;
+    margin-bottom: 32px;
+    text-align: center;
+    text-shadow: 0 0 30px rgba(226, 202, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+/* ============================================
+   CONTACT INFO
+   ============================================ */
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    border: 1px solid rgba(216, 178, 255, 0.3);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #d8b2ff;
+    transform: translateX(5px);
+    box-shadow: 0 4px 20px rgba(178, 101, 255, 0.3);
+}
+
+.contact-item:focus-visible {
+    outline: 2px solid #d8b2ff;
+    outline-offset: 3px;
+}
+
+.copied-toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(124, 58, 237, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(216, 178, 255, 0.4);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 8px 22px;
+    border-radius: 999px;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 10001;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.45);
+    animation: toastIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes toastIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+.contact-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(216, 178, 255, 0.15);
+    border-radius: 12px;
+    color: #d8b2ff;
+    border: 1px solid rgba(216, 178, 255, 0.3);
+}
+
+.contact-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.contact-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 4px;
+}
+
+.contact-text a,
+.contact-text span {
+    color: #e2caff;
+    font-size: 16px;
+    line-height: 1.6;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-text a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(226, 202, 255, 0.6);
+}
+
+.contact-label {
+    font-size: 14px;
+    opacity: 0.8;
+    color: #e2caff;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 767px) {
+    .modal-container {
+        padding: 32px 24px;
+        max-width: calc(100% - 20px);
+        border-radius: 20px;
+    }
+
+    .modal-title {
+        font-size: 28px;
+        margin-bottom: 24px;
+    }
+
+    .contact-info {
+        gap: 16px;
+    }
+
+    .contact-item {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .contact-icon {
+        width: 36px;
+        height: 36px;
+    }
+
+    .contact-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .contact-text a,
+    .contact-text span {
+        font-size: 15px;
+    }
+
+    .contact-label {
+        font-size: 13px;
+    }
+
+    .modal-close {
+        top: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .modal-close svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .modal-container {
+        max-width: 480px;
+    }
+}

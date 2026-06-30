@@ -1,0 +1,103 @@
+@* @page "/design"
+@using PortfolioNaiquen.Shared.Components
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+<PageTitle>@Lang.T("navDesign") - Naiquen Iturralde</PageTitle>
+
+<div class="portfolio-page">
+    <section class="page-hero fade-in">
+        <div class="hero-content">
+            <h1 class="page-title">
+                <span class="gradient-text">@Lang.T("designPageTitle")</span>
+            </h1>
+            <p class="page-intro">@Lang.T("designPageIntro")</p>
+        </div>
+    </section>
+
+    <section class="flyers-section fade-in">
+        <h2 class="section-title">@Lang.T("designGalleryTitle")</h2>
+
+<div class="flyer-grid">
+            <div class="flyer-item glass hover-lift">
+                <div class="flyer-image">
+                    <img src="https://via.placeholder.com/400x500/7c3aed/ffffff?text=Flyer+1" alt="@Lang.T("designFlyer1")" loading="lazy"
+/>
+                    <div class="flyer-overlay">
+                        <span class="flyer-label">@Lang.T("designFlyer1")</span>
+                    </div>
+                </div>
+            </div>
+
+<div class="flyer-item glass hover-lift">
+                <div class="flyer-image">
+                    <img src="https://via.placeholder.com/400x500/a78bfa/ffffff?text=Flyer+2" alt="@Lang.T("designFlyer2")" loading="lazy"
+/>
+                    <div class="flyer-overlay">
+                        <span class="flyer-label">@Lang.T("designFlyer2")</span>
+                    </div>
+                </div>
+            </div>
+
+<div class="flyer-item glass hover-lift">
+                <div class="flyer-image">
+                    <img src="https://via.placeholder.com/400x500/d946ef/ffffff?text=Flyer+3" alt="@Lang.T("designFlyer3")" loading="lazy"
+/>
+                    <div class="flyer-overlay">
+                        <span class="flyer-label">@Lang.T("designFlyer3")</span>
+                    </div>
+                </div>
+            </div>
+
+<div class="flyer-item glass hover-lift">
+                <div class="flyer-image">
+                    <img src="https://via.placeholder.com/400x500/06b6d4/ffffff?text=Flyer+4" alt="@Lang.T("designFlyer4")" loading="lazy"
+/>
+                    <div class="flyer-overlay">
+                        <span class="flyer-label">@Lang.T("designFlyer4")</span>
+                    </div>
+                </div>
+            </div>
+
+<div class="flyer-item glass hover-lift">
+                <div class="flyer-image">
+                    <img src="https://via.placeholder.com/400x500/7c3aed/ffffff?text=Flyer+5" alt="@Lang.T("designFlyer5")" loading="lazy"
+/>
+                    <div class="flyer-overlay">
+                        <span class="flyer-label">@Lang.T("designFlyer5")</span>
+                    </div>
+                </div>
+            </div>
+
+<div class="flyer-item glass hover-lift">
+                <div class="flyer-image">
+                    <img src="https://via.placeholder.com/400x500/a78bfa/ffffff?text=Flyer+6" alt="@Lang.T("designFlyer6")" loading="lazy"
+/>
+                    <div class="flyer-overlay">
+                        <span class="flyer-label">@Lang.T("designFlyer6")</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="page-cta fade-in">
+        <div class="cta-content">
+            <h2 class="cta-title">@Lang.T("designCtaTitle")</h2>
+            <p class="cta-text">@Lang.T("designCtaText")</p>
+            <MagicButton Label="@Lang.T("designCtaButton")" To="/databases" AdditionalClass="large" />
+        </div>
+    </section>
+</div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        Lang.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Lang.OnChange -= StateHasChanged;
+    }
+} *@

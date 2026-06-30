@@ -1,0 +1,438 @@
+.project-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 410px;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeIn 0.6s ease-out;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px) saturate(180%);
+    border: 1px solid var(--glass-border);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--glass-border-bright);
+}
+
+.project-card-image {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    flex: 0 0 160px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.15) 0%, rgba(217, 70, 239, 0.1) 100%);
+    transition: opacity 0.4s ease;
+}
+
+.project-card-image:hover {
+    opacity: 0.9;
+}
+
+.project-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-card-image img {
+    transform: scale(1.08);
+}
+
+.project-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(15, 11, 31, 0) 0%, rgba(15, 11, 31, 0.9) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card:hover .project-card-overlay {
+    opacity: 1;
+}
+
+.project-card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+}
+
+.game-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--light);
+    margin: 0;
+    line-height: 1.3;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+.game-meta {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(167, 139, 250, 0.85);
+    font-style: italic;
+    margin: 0;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.game-description {
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(248, 248, 250, 0.75);
+    margin: 0;
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.game-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.tag {
+    padding: 5px 12px;
+    background: rgba(124, 58, 237, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-purple-light);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+}
+
+.tag:hover {
+    background: rgba(124, 58, 237, 0.3);
+    border-color: var(--accent-pink);
+    color: var(--accent-pink);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.project-card-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    padding-top: 0;
+}
+
+.project-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 22px;
+    background: var(--gradient-primary);
+    color: var(--light);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+.project-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.project-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(167, 139, 250, 0.6);
+}
+
+.project-button:hover::before {
+    left: 100%;
+}
+
+/* === Toggler / acordeón === */
+.toggle-button {
+    background: var(--gradient-primary);
+}
+
+.toggle-chevron {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.toggle-button.is-open .toggle-chevron {
+    transform: rotate(180deg);
+}
+
+.figma-button {
+    background: transparent;
+    border: 2px solid #b279ff;
+    color: #b279ff;
+    box-shadow: none;
+}
+
+.figma-button::before {
+    background: linear-gradient(90deg, transparent, rgba(178, 121, 255, 0.15), transparent);
+}
+
+.figma-button:hover {
+    background: rgba(178, 121, 255, 0.15);
+    border-color: #d946ef;
+    color: #d946ef;
+    box-shadow: 0 4px 20px rgba(178, 121, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+.demo-button {
+    background: transparent;
+    border: 2px solid #00d4ff;
+    color: #00d4ff;
+    box-shadow: none;
+}
+
+.demo-button::before {
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.15), transparent);
+}
+
+.demo-button:hover {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: #00d4ff;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.35);
+    transform: translateY(-3px);
+}
+
+.code-button {
+    background: transparent;
+    border: 2px solid rgba(167, 139, 250, 0.45);
+    color: rgba(226, 202, 255, 0.85);
+    box-shadow: none;
+}
+
+.code-button::before {
+    background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.12), transparent);
+}
+
+.code-button:hover {
+    background: rgba(124, 58, 237, 0.12);
+    border-color: rgba(167, 139, 250, 0.9);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
+    transform: translateY(-3px);
+}
+
+.project-card-custom-actions {
+    max-height: 0;
+    overflow: hidden;
+    margin-top: 0;
+    opacity: 0;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                margin-top 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card-custom-actions.is-open {
+    max-height: 220px;
+    margin-top: 10px;
+    opacity: 1;
+}
+
+.project-card-custom-actions-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 200px;
+    overflow: hidden;
+}
+
+/* Limita la altura del carousel que se inserta en CustomActions */
+.project-card-custom-actions-inner > .image-carousel {
+    max-height: 160px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.project-card-custom-actions-inner > .image-carousel .carousel-container,
+.project-card-custom-actions-inner > .image-carousel .carousel-track,
+.project-card-custom-actions-inner > .image-carousel .carousel-slide {
+    max-height: 160px;
+    height: 160px;
+}
+
+.project-card-custom-actions-inner > .image-carousel .carousel-slide img {
+    max-height: 160px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Limita el placeholder de Figma si aparece */
+.project-card-custom-actions-inner > .figma-placeholder {
+    max-height: 90px;
+    overflow: hidden;
+}
+
+.card-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.project-card-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--light);
+    margin: 0;
+    line-height: 1.3;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+.project-card-description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(248, 248, 250, 0.75);
+    margin: 0;
+    font-weight: 400;
+}
+
+.project-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.tag-pill {
+    padding: 8px 16px;
+    background: rgba(124, 58, 237, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-purple-light);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+}
+
+.tag-pill:hover {
+    background: rgba(124, 58, 237, 0.3);
+    border-color: var(--accent-pink);
+    color: var(--accent-pink);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.project-card-footer {
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--gradient-primary);
+    color: var(--light);
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.project-link:hover {
+    transform: translateX(4px);
+    box-shadow: 0 6px 25px rgba(167, 139, 250, 0.6);
+}
+
+.project-link:hover::before {
+    left: 100%;
+}
+
+.link-arrow {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 18px;
+}
+
+.project-link:hover .link-arrow {
+    transform: translateX(6px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .project-card {
+        min-height: 0;
+    }
+
+    .project-card-title {
+        font-size: 22px;
+    }
+
+    .project-card-content {
+        padding: 18px;
+    }
+
+    .project-card-image {
+        height: 150px;
+        flex-basis: 150px;
+    }
+
+    .tag-pill {
+        font-size: 12px;
+        padding: 6px 14px;
+    }
+}

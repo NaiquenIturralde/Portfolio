@@ -1,0 +1,179 @@
+.magic-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 16px 40px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--light);
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px 0 rgba(124, 58, 237, 0.4);
+    z-index: 1;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0.3px;
+}
+
+.magic-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-secondary);
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.magic-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 50%;
+}
+
+.magic-button:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 10px 35px 0 rgba(167, 139, 250, 0.6);
+}
+
+.magic-button:hover::before {
+    opacity: 1;
+}
+
+.magic-button:hover::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.magic-button:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.magic-button-icon {
+    font-size: 20px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.magic-button-text {
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+}
+
+.magic-button-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease-out, height 0.6s ease-out;
+}
+
+.magic-button:hover .magic-button-glow {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+}
+
+/* Variante secundaria */
+.magic-button.secondary {
+    background: transparent;
+    border: 2px solid var(--accent-purple);
+    box-shadow: 0 4px 15px 0 rgba(124, 58, 237, 0.2);
+}
+
+.magic-button.secondary::before {
+    background: var(--gradient-primary);
+}
+
+.magic-button.secondary:hover {
+    border-color: var(--accent-pink);
+    box-shadow: 0 8px 30px 0 rgba(217, 70, 239, 0.5);
+}
+
+/* Variante outline */
+.magic-button.outline {
+    background: rgba(124, 58, 237, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--accent-purple-light);
+    box-shadow: 0 4px 15px 0 rgba(124, 58, 237, 0.15);
+}
+
+.magic-button.outline:hover {
+    background: var(--gradient-primary);
+    border-color: transparent;
+}
+
+/* Tamaños */
+.magic-button.small {
+    padding: 12px 28px;
+    font-size: 14px;
+}
+
+.magic-button.large {
+    padding: 20px 50px;
+    font-size: 18px;
+}
+
+/* ============================================
+   VARIANTE HERO — BotÃ³n principal del Hero/Home
+   ============================================ */
+.magic-button.hero {
+    min-height: 48px;
+    padding: 0 2rem;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.magic-button.hero:hover {
+    transform: translateY(-2px);
+}
+
+.magic-button.hero:focus-visible {
+    outline: 3px solid rgba(34, 211, 238, 0.45);
+    outline-offset: 4px;
+}
+
+.magic-button.hero:active {
+    transform: translateY(-1px);
+}
+
+.magic-button.hero.secondary {
+    border: 1px solid rgba(168, 85, 247, 0.95);
+    background: rgba(15, 10, 35, 0.35);
+    box-shadow: none;
+}
+
+.magic-button.hero.secondary:hover {
+    background: var(--gradient-primary);
+    border-color: transparent;
+    box-shadow: 0 10px 35px 0 rgba(167, 139, 250, 0.6);
+}
+
+@media (max-width: 767px) {
+    .magic-button.hero {
+        width: min(100%, 280px);
+    }
+}

@@ -23,25 +23,25 @@
                 </button>
 
                 <div class="nav-links @MenuCssClass">
-                    <a href="/" class="nav-link @GetActiveClass("/")" @onclick="CloseMenu">
+                    <a href="" class="nav-link @GetActiveClass("")" @onclick="CloseMenu">
                         <span class="link-text">@Lang.T("navHome")</span>
                     </a>
-                    <a href="/games" class="nav-link @GetActiveClass("/games")" @onclick="CloseMenu">
+                    <a href="games" class="nav-link @GetActiveClass("games")" @onclick="CloseMenu">
                         <span class="link-text">@Lang.T("navGames")</span>
                     </a>
-                    <a href="/software" class="nav-link @GetActiveClass("/software")" @onclick="CloseMenu">
+                    <a href="software" class="nav-link @GetActiveClass("software")" @onclick="CloseMenu">
                         <span class="link-text">@Lang.T("navSoftware")</span>
                     </a>
                     @if (ShowDesignSection)
                     {
-                        <a href="/design" class="nav-link @GetActiveClass("/design")" @onclick="CloseMenu">
+                        <a href="design" class="nav-link @GetActiveClass("design")" @onclick="CloseMenu">
                             <span class="link-text">@Lang.T("navDesign")</span>
                         </a>
                     }
-                    <a href="/databases" class="nav-link @GetActiveClass("/databases")" @onclick="CloseMenu">
+                    <a href="databases" class="nav-link @GetActiveClass("databases")" @onclick="CloseMenu">
                         <span class="link-text">@Lang.T("navDatabases")</span>
                     </a>
-                    <a href="/certificados" class="nav-link @GetActiveClass("/certificados")" @onclick="CloseMenu">
+                    <a href="certificados" class="nav-link @GetActiveClass("certificados")" @onclick="CloseMenu">
                         <span class="link-text">@Lang.T("navCertificados")</span>
                     </a>
 
@@ -72,33 +72,32 @@
     private readonly bool ShowDesignSection = false;
 
     private bool menuOpen = false;
-    private string currentPath = "/";
+    private string currentPath = "";
 
     private string MenuCssClass => menuOpen ? "nav-open" : "nav-closed";
 
     protected override async Task OnInitializedAsync()
     {
         Navigation.LocationChanged += OnLocationChanged;
-        currentPath = new Uri(Navigation.Uri).AbsolutePath;
+        currentPath = Navigation.ToBaseRelativePath(Navigation.Uri);
         Lang.OnChange += StateHasChanged;
         await Lang.InitializeAsync();
     }
 
     private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
     {
-        currentPath = new Uri(e.Location).AbsolutePath;
+        currentPath = Navigation.ToBaseRelativePath(e.Location);
         StateHasChanged();
     }
 
     private string GetActiveClass(string path)
     {
-        if (path == "/" && currentPath == "/")
-            return "active";
+        if (string.IsNullOrEmpty(path))
+            return currentPath == "" ? "active" : "";
 
-        if (path != "/" && currentPath.StartsWith(path, StringComparison.OrdinalIgnoreCase))
-            return "active";
-
-        return "";
+        return currentPath.StartsWith(path, StringComparison.OrdinalIgnoreCase)
+            ? "active"
+            : "";
     }
 
     private void ToggleMenu()

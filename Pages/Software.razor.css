@@ -49,15 +49,16 @@
     text-align: center;
 }
 
-/* ============================================
-   FEATURED SECTION (Love2Read — usa la misma .software-card)
-   ============================================ */
+/*
+============================================================
+TEMPORALMENTE OCULTO: LOVE2READ
+Estilos pertenecientes a Love2Read.
+No eliminar. Reactivar cuando el proyecto vuelva al portfolio.
+============================================================
 .featured-section {
     padding: 0 0 16px;
 }
 
-/* Wrapper del logo destacado (Love2Read) — hereda dimensiones de .software-card__media
-   pero conserva el glow violeta original. */
 .software-card__media--featured {
     background:
         radial-gradient(
@@ -79,6 +80,7 @@
         drop-shadow(0 0 24px rgba(200, 120, 255, 0.45))
         drop-shadow(0 0 50px rgba(200, 120, 255, 0.22));
 }
+*/
 
 .project-meta-label {
     font-size: 13px;

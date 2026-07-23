@@ -125,6 +125,7 @@ namespace PortfolioNaiquen.Services
                 ["softwarePageTitle"] = "Software Development",
                 ["softwarePageSubtitle"] = "Aplicaciones robustas · Full-stack · Arquitecturas escalables",
                 ["softwarePageIntro"] = "Estoy en proceso de formación como desarrolladora full-stack, enfocándome en crear aplicaciones intuitivas y centradas en el usuario. Me interesa especialmente el desarrollo de soluciones accesibles, y sigo aprendiendo para acercar mis experiencias digitales a la mayor cantidad de personas posible.",
+                // TEMPORALMENTE OCULTO: LOVE2READ — Traducciones ES. Reactivar cuando el proyecto vuelva al portfolio.
                 ["love2readMetaLabel"] = "Sistema de biblioteca virtual completo",
                 ["love2readProblemLabel"] = "Problema que resuelve",
                 ["love2readProblemText"] = "Digitaliza la gestión integral de bibliotecas: préstamos, devoluciones, control de inventario y administración de usuarios en un único sistema centralizado.",
@@ -178,7 +179,7 @@ namespace PortfolioNaiquen.Services
                 ["databasesPageSubtitle"] = "Modelado de datos y análisis funcional de sistemas demo.",
                 ["databasesPageIntro"] = "En esta sección presento diagramas DER y casos de uso de proyectos desarrollados, mostrando cómo se estructuran sus entidades, relaciones, actores y procesos principales.",
                 ["databasesSkillsTitle"] = "Habilidades aplicadas",
-                // Card 1 — Love2Read
+                // TEMPORALMENTE OCULTO: LOVE2READ — Card 1 ES. Reactivar cuando el proyecto vuelva.
                 ["dbL2RTitle"] = "Love2Read",
                 ["dbL2RMeta"] = "Sistema de gestión bibliotecaria",
                 ["dbL2RDesc"] = "Documentación técnica de una base de datos relacional orientada a usuarios, libros, préstamos, reservas, multas, pagos, comprobantes y suscripciones digitales.",
@@ -194,6 +195,7 @@ namespace PortfolioNaiquen.Services
                 ["dbL2RTool3"] = "DER",
                 ["dbL2RTool4"] = "Casos de uso",
                 ["dbL2RTool5"] = "Modelo relacional",
+                // TEMPORALMENTE OCULTO: LOVE2READ — Fin bloque ES.
                 ["dbL2RDerButton"] = "Ver DER",
                 ["dbL2RUcButton"] = "Ver casos de uso",
                 // Card 2 — CryptoView
@@ -368,6 +370,7 @@ namespace PortfolioNaiquen.Services
                 ["softwarePageTitle"] = "Software Development",
                 ["softwarePageSubtitle"] = "Robust applications · Full-stack · Scalable architectures",
                 ["softwarePageIntro"] = "I am training as a full-stack developer, focusing on creating intuitive, user-centered applications. I am especially interested in building accessible solutions, and I keep learning so my digital experiences can reach as many people as possible.",
+                // TEMPORALMENTE OCULTO: LOVE2READ — Traducciones EN. Reactivar cuando el proyecto vuelva al portfolio.
                 ["love2readMetaLabel"] = "Complete virtual library system",
                 ["love2readProblemLabel"] = "Problem it solves",
                 ["love2readProblemText"] = "Digitizes comprehensive library management: loans, returns, inventory control, and user administration in a single centralized system.",
@@ -421,7 +424,7 @@ namespace PortfolioNaiquen.Services
                 ["databasesPageSubtitle"] = "Data modeling and functional analysis of demo systems.",
                 ["databasesPageIntro"] = "This section presents ER diagrams and use case diagrams from developed projects, showing how their entities, relationships, actors, and main processes are structured.",
                 ["databasesSkillsTitle"] = "Applied skills",
-                // Card 1 — Love2Read
+                // TEMPORALMENTE OCULTO: LOVE2READ — Card 1 EN. Reactivar cuando el proyecto vuelva.
                 ["dbL2RTitle"] = "Love2Read",
                 ["dbL2RMeta"] = "Library management system",
                 ["dbL2RDesc"] = "Technical documentation for a relational database focused on users, books, loans, reservations, fines, payments, receipts, and digital subscriptions.",
@@ -437,6 +440,7 @@ namespace PortfolioNaiquen.Services
                 ["dbL2RTool3"] = "ERD",
                 ["dbL2RTool4"] = "Use cases",
                 ["dbL2RTool5"] = "Relational model",
+                // TEMPORALMENTE OCULTO: LOVE2READ — Fin bloque EN.
                 ["dbL2RDerButton"] = "View ERD",
                 ["dbL2RUcButton"] = "View use cases",
                 // Card 2 — CryptoView

@@ -25,11 +25,8 @@ Este portfolio combina una estética moderna con tonos lila oscuro, efectos de g
 ### Paleta de Colores
 
 ```css
---bg-primary: #0f0b1f
---accent-primary: #7c3aed
---accent-secondary: #a78bfa
---accent-tertiary: #d946ef
---accent-cyan: #06b6d4
+--bg-primary: #0f0b1f --accent-primary: #7c3aed --accent-secondary: #a78bfa
+  --accent-tertiary: #d946ef --accent-cyan: #06b6d4;
 ```
 
 ## Cómo Ejecutar el Proyecto
@@ -42,17 +39,20 @@ Este portfolio combina una estética moderna con tonos lila oscuro, efectos de g
 ### Pasos para Correr Localmente
 
 1. **Clonar el repositorio**
+
    ```bash
    git clone https://github.com/tuusuario/portfolio-naiquen.git
    cd portfolio-naiquen/PortfolioNaiquen
    ```
 
 2. **Restaurar dependencias**
+
    ```bash
    dotnet restore
    ```
 
 3. **Ejecutar la aplicación**
+
    ```bash
    dotnet run
    ```
@@ -73,33 +73,33 @@ Este portfolio combina una estética moderna con tonos lila oscuro, efectos de g
 
    on:
      push:
-       branches: [ main ]
+       branches: [main]
      workflow_dispatch:
 
    jobs:
      deploy:
        runs-on: ubuntu-latest
        steps:
-       - uses: actions/checkout@v3
-       
-       - name: Setup .NET
-         uses: actions/setup-dotnet@v3
-         with:
-           dotnet-version: 9.0.x
-           
-       - name: Publish
-         run: dotnet publish PortfolioNaiquen/PortfolioNaiquen.csproj -c Release -o release --nologo
-         
-       - name: Change base-tag in index.html
-         run: sed -i 's/<base href="\/" \/>/<base href="\/portfolio-naiquen\/" \/>/g' release/wwwroot/index.html
-         
-       - name: Add .nojekyll file
-         run: touch release/wwwroot/.nojekyll
-         
-       - name: Deploy to GitHub Pages
-         uses: JamesIves/github-pages-deploy-action@v4
-         with:
-           folder: release/wwwroot
+         - uses: actions/checkout@v3
+
+         - name: Setup .NET
+           uses: actions/setup-dotnet@v3
+           with:
+             dotnet-version: 9.0.x
+
+         - name: Publish
+           run: dotnet publish PortfolioNaiquen/PortfolioNaiquen.csproj -c Release -o release --nologo
+
+         - name: Change base-tag in index.html
+           run: sed -i 's/<base href="\/" \/>/<base href="\/portfolio-naiquen\/" \/>/g' release/wwwroot/index.html
+
+         - name: Add .nojekyll file
+           run: touch release/wwwroot/.nojekyll
+
+         - name: Deploy to GitHub Pages
+           uses: JamesIves/github-pages-deploy-action@v4
+           with:
+             folder: release/wwwroot
    ```
 
 2. **Configurar GitHub Pages**
@@ -117,16 +117,19 @@ Este portfolio combina una estética moderna con tonos lila oscuro, efectos de g
 ### Método 2: Publicación Manual
 
 1. **Publicar el proyecto**
+
    ```bash
    dotnet publish -c Release -o ./publish
    ```
 
 2. **Modificar base href en `index.html`**
+
    ```html
    <base href="/nombre-repositorio/" />
    ```
 
 3. **Agregar archivo `.nojekyll`**
+
    ```bash
    touch ./publish/wwwroot/.nojekyll
    ```
@@ -180,9 +183,10 @@ Este proyecto es de uso personal. Si deseas usar el código como base para tu pr
 ## Contacto
 
 **Naiquen Iturralde**
-- GitHub: [@tuusuario](https://github.com/tuusuario)
-- LinkedIn: [Tu LinkedIn](https://linkedin.com/in/tuusuario)
-- Email: tu@email.com
+
+- GitHub: [@NaiquenIturralde](https://github.com/NaiquenIturralde)
+- LinkedIn: [Naiquen Iturralde](https://www.linkedin.com/in/naiquen-iturralde-5a4a4021a/)
+- Email: iturraldenaiquen@gmail.com
 
 ---
 

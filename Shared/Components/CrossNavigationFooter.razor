@@ -49,6 +49,7 @@
     {
         new("games", "games"),
         new("software", "software"),
+        new("design", "design"),
         new("databases", "databases"),
         new("certificados", "certificados"),
     };
@@ -64,6 +65,7 @@
         {
             "games" or "/games" => "games",
             "software" or "/software" => "software",
+            "design" or "/design" => "design",
             "databases" or "/databases" => "databases",
             "certificados" or "/certificados" => "certificados",
             _ => InferFromUri()
@@ -94,6 +96,7 @@
         if (path.Contains("/certificados")) return "certificados";
         if (path.Contains("/databases")) return "databases";
         if (path.Contains("/software")) return "software";
+        if (path.Contains("/design")) return "design";
         if (path.Contains("/games")) return "games";
         return string.Empty;
     }

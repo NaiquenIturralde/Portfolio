@@ -1,0 +1,298 @@
+@page "/riderone"
+@using PortfolioNaiquen.Shared.Components
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@implements IDisposable
+
+<PageTitle>@Lang.T("riderOneTitle") - Naiquen Iturralde</PageTitle>
+
+<div class="riderone-page">
+    <!-- ===================== HERO ===================== -->
+    <section class="riderone-hero fade-in">
+        <div class="hero-content">
+            @if (!string.IsNullOrEmpty(RiderOneLogo))
+            {
+                <div class="riderone-logo">
+                    <img src="@RiderOneLogo" alt="@Lang.T("riderOneTitle")" />
+                </div>
+            }
+            <h1 class="page-title">
+                <span class="gradient-text">@Lang.T("riderOneTitle")</span>
+            </h1>
+            <p class="page-subtitle">@Lang.T("riderOneSubtitle")</p>
+            <p class="page-intro">@Lang.T("riderOneIntro")</p>
+            <div class="hero-actions">
+                <a href="/design" class="project-button back-design-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    @Lang.T("riderOneBackDesign")
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== INFORME / CASE STUDY ===================== -->
+    <section class="riderone-section fade-in">
+        <div class="riderone-card glass">
+            <div class="riderone-card__body">
+                <h2 class="section-title">@Lang.T("riderOneReportTitle")</h2>
+                <p class="riderone-card__text">@Lang.T("riderOneReportDesc")</p>
+            </div>
+        </div>
+
+        <div class="report-carousel" tabindex="0" role="group" aria-roledescription="carousel"
+             aria-label="@Lang.T("riderOneReportTitle")" @onkeydown="OnKeyDownAsync">
+            <div class="report-carousel__stage">
+                <figure class="report-carousel__slide" tabindex="0" role="group"
+                        aria-label="@Lang.T("riderOneReportSlideAlt") @(_currentSlide + 1)"
+                        @onclick="() => OpenFullscreen(_currentSlide)">
+                    <img src="@ReportImages[_currentSlide]"
+                         alt="@Lang.T("riderOneTitle") — @Lang.T("riderOneReportSlideAlt") @(_currentSlide + 1)" />
+                </figure>
+
+                <button type="button" class="report-nav report-nav--prev" aria-label="@Lang.T("riderOnePrevSlide")"
+                        @onclick="PrevSlide" disabled="@(_currentSlide == 0)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+
+                <button type="button" class="report-nav report-nav--next" aria-label="@Lang.T("riderOneNextSlide")"
+                        @onclick="NextSlide" disabled="@(_currentSlide == ReportImages.Count - 1)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M9 18l6-6-6-6" />
+                    </svg>
+                </button>
+
+                <button type="button" class="report-fullscreen-btn" aria-label="@Lang.T("riderOneFullscreen")"
+                        @onclick="() => OpenFullscreen(_currentSlide)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round">
+                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="report-carousel__footer">
+                <span class="report-counter" aria-live="polite">
+                    @(_currentSlide + 1) / @ReportImages.Count
+                </span>
+                <span class="report-carousel__hint">@Lang.T("riderOneSlideHint")</span>
+            </div>
+        </div>
+    </section>
+
+    @if (_isFullscreen)
+    {
+        <div class="report-fullscreen-overlay" @onclick="CloseFullscreen">
+            <button type="button" class="report-close-btn" @onclick="CloseFullscreen"
+                    aria-label="@Lang.T("close")">✕</button>
+            <figure class="report-fullscreen-figure" @onclick:stopPropagation="true">
+                <img src="@ReportImages[_currentSlide]"
+                     alt="@Lang.T("riderOneTitle") — @Lang.T("riderOneReportSlideAlt") @(_currentSlide + 1)" />
+            </figure>
+        </div>
+    }
+
+    <!-- ===================== EVOLUCIÓN ===================== -->
+    <section class="riderone-section fade-in">
+        <h2 class="section-title">@Lang.T("riderOneEvolutionTitle")</h2>
+
+        <div class="timeline">
+            <article class="timeline-block glass">
+                <div class="timeline-year">2024</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">@Lang.T("riderOneYear2024Title")</h3>
+                    <ul class="timeline-list">
+                        <li>@Lang.T("riderOneYear2024Item1")</li>
+                        <li>@Lang.T("riderOneYear2024Item2")</li>
+                        <li>@Lang.T("riderOneYear2024Item3")</li>
+                        <li>@Lang.T("riderOneYear2024Item4")</li>
+                        <li>@Lang.T("riderOneYear2024Item5")</li>
+                        <li>@Lang.T("riderOneYear2024Item6")</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="timeline-block glass">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">@Lang.T("riderOneYear2025Title")</h3>
+                    <ul class="timeline-list">
+                        <li>@Lang.T("riderOneYear2025Item1")</li>
+                        <li>@Lang.T("riderOneYear2025Item2")</li>
+                        <li>@Lang.T("riderOneYear2025Item3")</li>
+                        <li>@Lang.T("riderOneYear2025Item4")</li>
+                        <li>@Lang.T("riderOneYear2025Item5")</li>
+                        <li>@Lang.T("riderOneYear2025Item6")</li>
+                    </ul>
+                </div>
+            </article>
+        </div>
+
+        <div class="evolution-future glass">
+            <h3 class="evolution-future__title">@Lang.T("riderOneFutureTitle")</h3>
+            <p class="evolution-future__text">@Lang.T("riderOneFutureDesc")</p>
+        </div>
+    </section>
+
+    <!-- ===================== ARQUITECTURA ===================== -->
+    <section class="riderone-section fade-in">
+        <h2 class="section-title">@Lang.T("riderOneArchTitle")</h2>
+        <p class="section-lead">@Lang.T("riderOneArchIntro")</p>
+
+        <div class="arch-grid">
+            <div class="arch-card glass">
+                <div class="arch-card__num">ESP32 #1</div>
+                <h3 class="arch-card__title">@Lang.T("riderOneArchEsp1")</h3>
+            </div>
+            <div class="arch-card glass">
+                <div class="arch-card__num">ESP32 #2</div>
+                <h3 class="arch-card__title">@Lang.T("riderOneArchEsp2")</h3>
+            </div>
+            <div class="arch-card glass">
+                <div class="arch-card__num">ESP32 #3</div>
+                <h3 class="arch-card__title">@Lang.T("riderOneArchEsp3")</h3>
+            </div>
+        </div>
+
+        <p class="riderone-card__text arch-note">@Lang.T("riderOneArchNote")</p>
+    </section>
+
+    <!-- ===================== VIDEOS ===================== -->
+    <section id="videos" class="riderone-section fade-in">
+        <h2 class="section-title">@Lang.T("riderOneVideosTitle")</h2>
+        <p class="section-lead">@Lang.T("riderOneVideosIntro")</p>
+
+        <div class="videos-stack">
+            @if (Videos.Any())
+            {
+                @foreach (var video in Videos)
+                {
+                    <YouTubeEmbed VideoId="@video.VideoId" Title="@video.Title" Description="@video.Description" />
+                }
+            }
+            else
+            {
+                <p class="riderone-videos-placeholder">@Lang.T("riderOneVideosPending")</p>
+            }
+        </div>
+    </section>
+
+    <!-- ===================== EQUIPO ===================== -->
+    <section class="riderone-section fade-in">
+        <h2 class="section-title">@Lang.T("riderOneTeamTitle")</h2>
+
+        <div class="team-grid">
+            <article class="team-card glass">
+                <h3 class="team-card__name">Naiquen Iturralde</h3>
+                <p class="team-card__role">@Lang.T("riderOneTeamNaiquenRole")</p>
+                <p class="team-card__desc">@Lang.T("riderOneTeamNaiquenDesc")</p>
+            </article>
+            <article class="team-card glass">
+                <h3 class="team-card__name">Mateo Lemes</h3>
+                <p class="team-card__role">@Lang.T("riderOneTeamMateoRole")</p>
+                <p class="team-card__desc">@Lang.T("riderOneTeamMateoDesc")</p>
+            </article>
+            <article class="team-card glass">
+                <h3 class="team-card__name">Nadia Lucero</h3>
+                <p class="team-card__role">@Lang.T("riderOneTeamNadiaRole")</p>
+                <p class="team-card__desc">@Lang.T("riderOneTeamNadiaDesc")</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- ===================== PROPIEDAD INTELECTUAL ===================== -->
+    <section class="riderone-section fade-in">
+        <div class="ip-note glass">
+            <h2 class="ip-note__title">@Lang.T("riderOneIpTitle")</h2>
+            <p class="ip-note__text">@Lang.T("riderOneIpText1")</p>
+            <p class="ip-note__text">@Lang.T("riderOneIpText2")</p>
+        </div>
+    </section>
+
+    <section class="page-navigation fade-in">
+        <CrossNavigationFooter CurrentPage="design" />
+    </section>
+</div>
+
+@code {
+    private const string RiderOneLogo = "img/LogoRiderOne.png";
+
+    // Informe exportado como imágenes PNG (carpeta wwwroot/img/Rider-One)
+    private IReadOnlyList<string> ReportImages { get; } =
+    [
+        "img/Rider-One/1_Rider-One.png",
+        "img/Rider-One/2_El-Problema.png",
+        "img/Rider-One/3_La-Solucion.png",
+        "img/Rider-One/4_Tecnologia-para-una-movilidad-ciclista-mas-segura-visible-y-conectada.png",
+        "img/Rider-One/5_Para-Quien-Esta-Pensado.png",
+        "img/Rider-One/6_Rider-One-2024-Primer-Prototipo.png",
+        "img/Rider-One/7_Expo-ITES-2024-Primera-Validacion.png",
+        "img/Rider-One/8_Evolucion-2025-Nueva-Arquitectura.png",
+        "img/Rider-One/9_Diseno-Fisico-2025-Componentes-Integrados.png",
+        "img/Rider-One/10_Dos-Formas-de-Interaccion.png",
+        "img/Rider-One/11_Camara-Trasera-y-Multimedia-En-Desarrollo.png",
+        "img/Rider-One/12_Prototipo-2025-en-Accion-Expo-ITES-2025.png",
+        "img/Rider-One/13_Conectividad-Proxima-Etapa.png",
+        "img/Rider-One/14_Rider-One-Assist-Evolucion-Futura.png",
+        "img/Rider-One/15_Evolucion-del-Producto-Linea-Temporal.png",
+        "img/Rider-One/16_Estrategia-Comercial-y-Propiedad-Intelectual.png",
+        "img/Rider-One/17_Equipo-Rider-One.png",
+        "img/Rider-One/18_Estado-Actual-y-Proximos-Pasos.png",
+    ];
+
+    private record RiderVideo(string VideoId, string Title, string Description);
+
+    // ── Estado del carrusel del informe ──
+    private int _currentSlide;
+    private bool _isFullscreen;
+
+    private void PrevSlide()
+    {
+        if (_currentSlide > 0) _currentSlide--;
+    }
+
+    private void NextSlide()
+    {
+        if (_currentSlide < ReportImages.Count - 1) _currentSlide++;
+    }
+
+    private void OpenFullscreen(int index)
+    {
+        _currentSlide = Math.Clamp(index, 0, ReportImages.Count - 1);
+        _isFullscreen = true;
+    }
+
+    private void CloseFullscreen() => _isFullscreen = false;
+
+    // ── Accesibilidad: teclado (← →) en el carrusel ──
+    private async Task OnKeyDownAsync(Microsoft.AspNetCore.Components.Web.KeyboardEventArgs e)
+    {
+        if (e.Key == "ArrowLeft") PrevSlide();
+        else if (e.Key == "ArrowRight") NextSlide();
+        else if (e.Key == "Escape" && _isFullscreen) CloseFullscreen();
+        await Task.CompletedTask;
+    }
+
+    private IReadOnlyList<RiderVideo> Videos { get; } =
+    [
+        new RiderVideo(
+            "6fsaos59glY",
+            "Rider One | Evolución de un sistema inteligente de seguridad para ciclistas",
+            "Recorrido por la evolución del proyecto: del primer prototipo 2024 hasta la nueva arquitectura 2025."),
+    ];
+
+    protected override void OnInitialized()
+    {
+        Lang.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        Lang.OnChange -= StateHasChanged;
+    }
+}

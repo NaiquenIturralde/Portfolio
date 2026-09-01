@@ -7,6 +7,9 @@
     [Parameter] public string? Description { get; set; }
     [Parameter] public List<string>? Tags { get; set; }
     [Parameter] public string? Link { get; set; }
+    [Parameter] public string? LinkLabel { get; set; }
+    [Parameter] public string? SecondaryLink { get; set; }
+    [Parameter] public string? SecondaryLinkLabel { get; set; }
     [Parameter] public string? FigmaLink { get; set; }
     [Parameter] public string? DemoLink { get; set; }
     [Parameter] public string? CodeLink { get; set; }
@@ -65,7 +68,20 @@
             {
                 @if (!string.IsNullOrWhiteSpace(Link))
                 {
-                    <a href="@Link" class="project-button" target="_blank" rel="noopener noreferrer">Ver Proyecto</a>
+                    var isExternal = Link.StartsWith("http", StringComparison.OrdinalIgnoreCase);
+                    <a href="@Link" class="project-button" target="@(isExternal ? "_blank" : null)"
+                       rel="@(isExternal ? "noopener noreferrer" : null)">
+                        @(string.IsNullOrEmpty(LinkLabel) ? "Ver Proyecto" : LinkLabel)
+                    </a>
+                }
+                @if (!string.IsNullOrWhiteSpace(SecondaryLink))
+                {
+                    var isSecondaryExternal = SecondaryLink.StartsWith("http", StringComparison.OrdinalIgnoreCase);
+                    <a href="@SecondaryLink" class="project-button secondary-button"
+                       target="@(isSecondaryExternal ? "_blank" : null)"
+                       rel="@(isSecondaryExternal ? "noopener noreferrer" : null)">
+                        @(string.IsNullOrEmpty(SecondaryLinkLabel) ? "Ver más" : SecondaryLinkLabel)
+                    </a>
                 }
                 @if (!string.IsNullOrWhiteSpace(DemoLink))
                 {

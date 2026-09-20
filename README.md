@@ -7,7 +7,7 @@ desarrollo de software, videojuegos, diseño UX/UI y bases de datos.
 ![Blazor WebAssembly](https://img.shields.io/badge/Blazor-WebAssembly-512BD4?logo=blazor&logoColor=white)
 ![Deploy](https://img.shields.io/badge/Deploy-GitHub%20Pages-222222?logo=githubpages&logoColor=white)
 
-**[▶ Ver demo en vivo](https://naiqueniturralde.github.io/Portfolio/)** ·
+**[▶ Ver portfolio](https://naiqueniturralde.github.io/Portfolio/)** ·
 **[GitHub](https://github.com/NaiquenIturralde)** ·
 **[LinkedIn](https://www.linkedin.com/in/naiquen-iturralde-5a4a4021a/)**
 

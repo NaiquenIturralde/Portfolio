@@ -1,193 +1,209 @@
-# Portfolio Naiquen Iturralde
+# Naiquen Iturralde — Portfolio
 
-Portfolio profesional desarrollado con **Blazor WebAssembly** para mostrar mis proyectos de desarrollo de software, diseño de videojuegos, UI/UX y arquitectura de bases de datos.
+Portfolio profesional desarrollado con **Blazor WebAssembly (.NET 8)** que reúne proyectos de
+desarrollo de software, videojuegos, diseño UX/UI y bases de datos.
 
-## Sobre el Proyecto
+![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet&logoColor=white)
+![Blazor WebAssembly](https://img.shields.io/badge/Blazor-WebAssembly-512BD4?logo=blazor&logoColor=white)
+![Deploy](https://img.shields.io/badge/Deploy-GitHub%20Pages-222222?logo=githubpages&logoColor=white)
 
-Este portfolio combina una estética moderna con tonos lila oscuro, efectos de glassmorphism y animaciones fluidas, todo sin necesidad de JavaScript adicional. Creado 100% con Blazor WebAssembly y CSS puro para ofrecer una experiencia visual impactante y profesional.
-
-## Secciones del Sitio
-
-- **Home**: Página de bienvenida con hero section, stats y vista previa de categorías
-- **Games**: Proyectos de desarrollo de videojuegos (Oceánida, Bosque Encantado, Pac Team)
-- **Software**: Aplicaciones y sistemas (CryptoView, TCP Server, Perceptrón, Proyectos Tecnicatura)
-- **Design**: Galería de diseños UI/UX con flyers y composiciones gráficas
-- **Databases**: Soluciones de bases de datos (Gestión Académica, Auditoría de Notas)
-
-## Tecnologías Utilizadas
-
-- **Blazor WebAssembly** (.NET 9.0.101)
-- **CSS3** con variables personalizadas y glassmorphism
-- **Google Fonts** (Poppins)
-- **Navigation Manager** para enrutamiento SPA
-- **Scoped CSS** para estilos por componente
-
-### Paleta de Colores
-
-```css
---bg-primary: #0f0b1f --accent-primary: #7c3aed --accent-secondary: #a78bfa
-  --accent-tertiary: #d946ef --accent-cyan: #06b6d4;
-```
-
-## Cómo Ejecutar el Proyecto
-
-### Requisitos Previos
-
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) o superior
-- Visual Studio 2022 / VS Code (opcional pero recomendado)
-
-### Pasos para Correr Localmente
-
-1. **Clonar el repositorio**
-
-   ```bash
-   git clone https://github.com/tuusuario/portfolio-naiquen.git
-   cd portfolio-naiquen/PortfolioNaiquen
-   ```
-
-2. **Restaurar dependencias**
-
-   ```bash
-   dotnet restore
-   ```
-
-3. **Ejecutar la aplicación**
-
-   ```bash
-   dotnet run
-   ```
-
-4. **Abrir en el navegador**
-   - Navega a `https://localhost:5205` o el puerto que se muestre en la terminal
-
-## Publicación en GitHub Pages
-
-### Método 1: GitHub Actions (Recomendado)
-
-1. **Crear workflow de GitHub Actions**
-
-   Crea el archivo `.github/workflows/deploy.yml`:
-
-   ```yaml
-   name: Deploy to GitHub Pages
-
-   on:
-     push:
-       branches: [main]
-     workflow_dispatch:
-
-   jobs:
-     deploy:
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v3
-
-         - name: Setup .NET
-           uses: actions/setup-dotnet@v3
-           with:
-             dotnet-version: 9.0.x
-
-         - name: Publish
-           run: dotnet publish PortfolioNaiquen/PortfolioNaiquen.csproj -c Release -o release --nologo
-
-         - name: Change base-tag in index.html
-           run: sed -i 's/<base href="\/" \/>/<base href="\/portfolio-naiquen\/" \/>/g' release/wwwroot/index.html
-
-         - name: Add .nojekyll file
-           run: touch release/wwwroot/.nojekyll
-
-         - name: Deploy to GitHub Pages
-           uses: JamesIves/github-pages-deploy-action@v4
-           with:
-             folder: release/wwwroot
-   ```
-
-2. **Configurar GitHub Pages**
-   - Ve a Settings → Pages en tu repositorio
-   - Selecciona `gh-pages` como branch
-   - Guarda los cambios
-
-3. **Push al repositorio**
-   ```bash
-   git add .
-   git commit -m "Add GitHub Actions deployment"
-   git push origin main
-   ```
-
-### Método 2: Publicación Manual
-
-1. **Publicar el proyecto**
-
-   ```bash
-   dotnet publish -c Release -o ./publish
-   ```
-
-2. **Modificar base href en `index.html`**
-
-   ```html
-   <base href="/nombre-repositorio/" />
-   ```
-
-3. **Agregar archivo `.nojekyll`**
-
-   ```bash
-   touch ./publish/wwwroot/.nojekyll
-   ```
-
-4. **Subir a branch `gh-pages`**
-   ```bash
-   git subtree push --prefix publish/wwwroot origin gh-pages
-   ```
-
-## Estructura del Proyecto
-
-```
-PortfolioNaiquen/
-├── Pages/
-│   ├── Home.razor
-│   ├── Games.razor
-│   ├── Software.razor
-│   ├── Design.razor
-│   └── Databases.razor
-├── Shared/
-│   ├── Components/
-│   │   ├── MagicButton.razor
-│   │   └── ProjectCard.razor
-│   └── MainLayout.razor
-├── wwwroot/
-│   ├── css/
-│   │   └── app.css
-│   └── index.html
-├── App.razor
-├── Program.cs
-└── _Imports.razor
-```
-
-## Próximos Pasos
-
-- [ ] Agregar imágenes reales de los proyectos
-- [ ] Implementar modo claro/oscuro
-- [ ] Agregar página de contacto con formulario
-- [ ] Integrar analytics (Google Analytics / Plausible)
-- [ ] Agregar animaciones de scroll con Intersection Observer
-- [ ] Implementar blog técnico
-- [ ] Optimizar SEO con meta tags personalizados
-- [ ] Agregar sitemap.xml
-- [ ] Implementar Progressive Web App (PWA)
-- [ ] Agregar tests unitarios con bUnit
-
-## Licencia
-
-Este proyecto es de uso personal. Si deseas usar el código como base para tu propio portfolio, siéntete libre de hacerlo con atribución.
-
-## Contacto
-
-**Naiquen Iturralde**
-
-- GitHub: [@NaiquenIturralde](https://github.com/NaiquenIturralde)
-- LinkedIn: [Naiquen Iturralde](https://www.linkedin.com/in/naiquen-iturralde-5a4a4021a/)
-- Email: iturraldenaiquen@gmail.com
+**[▶ Ver demo en vivo](https://naiqueniturralde.github.io/Portfolio/)** ·
+**[GitHub](https://github.com/NaiquenIturralde)** ·
+**[LinkedIn](https://www.linkedin.com/in/naiquen-iturralde-5a4a4021a/)**
 
 ---
 
-Hecho con Blazor WebAssembly
+## Sobre el proyecto
+
+Soy **desarrolladora web en formación**, enfocada en crear interfaces claras, funcionales y fáciles
+de usar. Este portfolio es mi proyecto propio de desarrollo: una SPA en **Blazor WebAssembly** que
+presenta mis trabajos de software, videojuegos, diseño UX/UI y modelado de bases de datos.
+
+El sitio es **bilingüe (Español / English)** con un sistema de traducción propio, y toda la interfaz
+—layout, componentes, animaciones y estilos— está construida con **CSS puro y Scoped CSS de Blazor**,
+sin frameworks de UI ni dependencias de npm.
+
+---
+
+## Tecnologías
+
+| Categoría            | Tecnología                                                                   |
+| -------------------- | ---------------------------------------------------------------------------- |
+| Framework            | Blazor WebAssembly (`.NET 8`)                                                |
+| Lenguaje             | C# (Nullable e ImplicitUsings habilitados)                                   |
+| Estilos              | CSS3 con variables, glassmorphism y **Scoped CSS** por componente            |
+| Tipografía           | Google Fonts — Poppins                                                       |
+| Internacionalización | Servicio propio `LanguageService` (ES/EN) con persistencia en `localStorage` |
+| Interoperabilidad JS | `IJSRuntime` para `localStorage` y Clipboard API                             |
+| Routing              | Router de Blazor + `NavigationManager` (SPA)                                 |
+| Despliegue           | GitHub Actions → GitHub Pages                                                |
+
+### Paleta de colores
+
+Definida como variables CSS en `wwwroot/css/app.css`:
+
+```css
+--primary-dark: #0f0b1f;
+--secondary-dark: #1a1530;
+--tertiary-dark: #251d3d;
+--accent-purple: #7c3aed;
+--accent-purple-light: #a78bfa;
+--accent-purple-dark: #5b21b6;
+--accent-pink: #d946ef;
+--accent-cyan: #06b6d4;
+--light: #f8fafc;
+```
+
+---
+
+## Secciones del sitio
+
+| Ruta                   | Sección        | Contenido                                                                |
+| ---------------------- | -------------- | ------------------------------------------------------------------------ |
+| `/`                    | Inicio         | Hero, métricas, perfil extendido, CryptoView destacado y accesos rápidos |
+| `/games`               | Games          | Oceánida, Bosque Encantado y Pac Team                                    |
+| `/software`            | Software       | CryptoView                                                               |
+| `/design`              | Diseño         | Rider One                                                                |
+| `/riderone`            | Rider One      | Caso de estudio: informe en carrusel, evolución, arquitectura y videos   |
+| `/databases`           | Bases de Datos | Modelado relacional, DER y casos de uso de CryptoView                    |
+| `/certificados`        | Certificados   | Formación complementaria y certificaciones obtenidas                     |
+| `/pacteampresentation` | Pac Team       | Presentación del proyecto en slides                                      |
+
+---
+
+## Proyectos destacados
+
+### CryptoView
+
+Sistema web de seguimiento de criptomonedas con dashboard de mercado, gráficos, gestión de usuarios
+y roles, notas personales, preferencias y modo claro/oscuro.
+
+**Stack:** Blazor Server · ASP.NET Core · SQL Server · API REST externa · CRUD · autenticación y roles.
+
+→ [Ver demo](https://youtu.be/Ly_RvPX1kv4) · [Ver código](https://github.com/NaiquenIturralde/CryptoView)
+
+### Rider One
+
+Sistema inteligente de señalización vial y seguridad para ciclistas. Combina diseño UX/UI, diseño 3D,
+software, electrónica y prototipado físico.
+
+**Stack:** UX/UI · Figma · diseño 3D · ESP32 · IoT · hardware.
+
+→ [Ver caso de estudio](https://naiqueniturralde.github.io/Portfolio/riderone)
+
+### Oceánida
+
+Juego educativo de exploración submarina inspirado en los avistamientos del CONICET en Mar del Plata.
+Las decisiones del jugador impactan en el ecosistema marino. Desarrollado junto a Mateo Lemes.
+
+**Stack:** GDevelop · 2D · diseño narrativo.
+
+→ [Jugar](https://naiquen-anael-iturralde.itch.io/ocenidaweb)
+
+### Bosque Encantado
+
+Aventura narrativa donde cada decisión afecta las relaciones con los habitantes del bosque y
+desbloquea distintos finales. Colaboración con alumnas MetJam.
+
+**Stack:** RPG Playground · narrativa ramificada.
+
+→ [Jugar](https://rpgplayground.com/game/bosque-encantado-4/)
+
+### Pac Team
+
+Juego cooperativo de puzzles para móvil, actualmente en desarrollo.
+
+**Stack:** Unity · 3D · multijugador.
+
+→ [Ver presentación](https://naiqueniturralde.github.io/Portfolio/pacteampresentation)
+
+---
+
+## Características principales
+
+- **Bilingüe ES/EN** con un servicio de traducción propio; la preferencia se conserva en `localStorage`.
+- **Scoped CSS por componente**, para estilos aislados y mantenibles.
+- **Sin frameworks JS de terceros**: no hay npm, bundlers ni librerías de UI.
+- **Componentes reutilizables**: cards de proyecto, carrusel de imágenes, visor fullscreen, embed de
+  YouTube, modal de contacto, botón animado, selector de idioma y footer de navegación cruzada.
+- **Navegación cruzada** entre todas las secciones y navbar responsive con menú móvil.
+- **Accesibilidad**: foco en el título al navegar, `aria-label` en controles, navegación por teclado
+  en el carrusel y scroll suave.
+
+---
+
+## Ejecución local
+
+**Requisitos**
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (el proyecto fija la versión del SDK
+  mediante `global.json`)
+- Un navegador moderno. Visual Studio 2022 o VS Code son opcionales.
+
+**Pasos**
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/NaiquenIturralde/Portfolio.git
+cd Portfolio
+
+# 2. Restaurar dependencias
+dotnet restore
+
+# 3. Ejecutar
+dotnet run
+```
+
+La aplicación queda disponible en la URL que muestra la consola. Para usar el perfil HTTPS del
+DevServer con hot reload:
+
+```bash
+dotnet run --launch-profile https
+```
+
+---
+
+## Deploy
+
+El despliegue es automático con **GitHub Actions + GitHub Pages** (`.github/workflows/deploy.yml`).
+En cada push a `main` el workflow compila el proyecto en Release, ajusta el `base href` del sitio
+publicado, genera un `404.html` para que el router de Blazor resuelva las rutas SPA y publica el
+artefacto en GitHub Pages.
+
+No requiere ramas adicionales ni configuración manual. El sitio publicado está en
+**https://naiqueniturralde.github.io/Portfolio/**
+
+---
+
+## Estructura del proyecto
+
+```
+PortfolioNaiquen/
+├── PortfolioNaiquen.csproj      # Proyecto Blazor WebAssembly (.NET 8)
+├── global.json                  # Fija la versión del SDK de .NET
+├── Program.cs                   # Arranque y registro de servicios
+├── App.razor                    # Router principal y layout por defecto
+│
+├── Pages/                       # Páginas enrutadas, una por sección del sitio
+├── Services/                    # LanguageService: traducciones ES/EN
+├── Shared/                      # Layout principal y bloques de contenido
+│   └── Components/              # Componentes reutilizables (cada uno con su .razor.css)
+├── wwwroot/                     # index.html, css/, img/, certificados/, docs/ y PDFs
+└── .github/workflows/           # Build y deploy automático a GitHub Pages
+```
+
+---
+
+## Contacto
+
+¿Querés sumar mi perfil a tu equipo o consultarme por alguno de los proyectos?
+
+**Email:** [iturraldenaiquen@gmail.com](mailto:iturraldenaiquen@gmail.com)
+
+---
+
+## Uso del código
+
+Este repositorio contiene mi portfolio personal: el diseño, los textos, las imágenes y los proyectos
+mostrados son de mi autoría. El código está disponible públicamente con fines de consulta y
+referencia. Si querés reutilizar alguna parte, contactame por email.

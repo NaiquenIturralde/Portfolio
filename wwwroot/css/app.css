@@ -140,7 +140,7 @@ a:hover {
     transform: translateY(-1px) scale(0.98);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn-primary:focus {
     box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.4);
     outline: none;
 }

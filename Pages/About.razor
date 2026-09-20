@@ -6,26 +6,32 @@
 
 <PageTitle>@Lang.T("aboutTitle") - Naiquen Iturralde</PageTitle>
 
-<div class="max-w-4xl mx-auto mt-20 text-center">
-    <h1 class="text-5xl font-extrabold text-purple-400">@Lang.T("aboutTitle")</h1>
+<div class="about-page">
+    <div class="about-hero fade-in">
+        <h1 class="about-title">
+            <span class="gradient-text">@Lang.T("aboutTitle")</span>
+        </h1>
 
-    <p class="text-gray-300 text-xl mt-6 leading-relaxed px-4">
-        @Lang.T("aboutP1")
-        <br /><br />
+        <div class="about-card glass">
+            <p class="about-text">
+                @Lang.T("aboutP1")
+                <br /><br />
 
-        @Lang.T("aboutP2")
-        <br /><br />
+                @Lang.T("aboutP2")
+                <br /><br />
 
-        @Lang.T("aboutP3")
-        <br /><br />
+                @Lang.T("aboutP3")
+                <br /><br />
 
-        @Lang.T("aboutP4")
-        <br /><br />
+                @Lang.T("aboutP4")
+                <br /><br />
 
-        @Lang.T("aboutP5")
-    </p>
+                @Lang.T("aboutP5")
+            </p>
+        </div>
+    </div>
 
-    <div class="mt-12">
+    <div class="about-photo">
         <ImageFullscreen ImageSrc="@ProfileImage.Url" Alt="@ProfileImage.Alt" />
     </div>
 </div>

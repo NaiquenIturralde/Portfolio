@@ -220,8 +220,8 @@
     position: fixed;
     inset: 0;
     background: rgba(8, 4, 20, 0.52);
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     z-index: 998;
     opacity: 0;
     pointer-events: none;
@@ -240,6 +240,12 @@
 @media (max-width: 1023px) {
     .nav-toggle {
         display: flex;
+    }
+
+    /* Bloquear scroll del contenido cuando el menú está abierto */
+    .page.no-scroll {
+        height: 100vh;
+        overflow: hidden;
     }
 
     .nav-links {

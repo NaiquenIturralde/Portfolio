@@ -141,6 +141,28 @@
     margin-top: 0.25rem;
 }
 
+/* Tags pill (mismo lenguaje visual que ProjectCard) */
+.riderone-feature-card__tags .tag {
+    padding: 5px 12px;
+    background: rgba(124, 58, 237, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(167, 139, 250, 0.25);
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent-purple-light);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.3px;
+}
+
+.riderone-feature-card__tags .tag:hover {
+    background: rgba(124, 58, 237, 0.3);
+    border-color: var(--accent-pink);
+    color: var(--accent-pink);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
 .riderone-feature-card__actions {
     display: flex;
     flex-wrap: wrap;
@@ -209,6 +231,27 @@
     background: rgba(217, 70, 239, 0.12);
     border-color: #d946ef;
     box-shadow: 0 4px 20px rgba(217, 70, 239, 0.35);
+}
+
+/* ============================================
+   CARD WALLET AURA — variante cian sobre la
+   misma estructura/estilos de la card Rider One
+   ============================================ */
+.riderone-feature-card__media.aura-media {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(6, 182, 212, 0.14) 0%, rgba(124, 58, 237, 0.10) 100%);
+    border-right: 1px solid rgba(6, 182, 212, 0.28);
+}
+
+/* Solo el asset Aura — sin aro cian */
+.aura-asset {
+    width: 88%;
+    max-width: 340px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 10px 26px rgba(6, 182, 212, 0.3));
 }
 
 /* Page CTA Section */
@@ -334,6 +377,11 @@
         padding: 2rem 2rem 1.5rem;
         border-right: none;
         border-bottom: 1px solid rgba(167, 139, 250, 0.18);
+    }
+
+    .riderone-feature-card__media.aura-media {
+        border-right: none;
+        border-bottom: 1px solid rgba(6, 182, 212, 0.28);
     }
 
     .riderone-feature-card__content {

@@ -43,6 +43,55 @@
         <a href="." class="reload">Recargar</a>
         <span class="dismiss">🗙</span>
     </div>
+    <script>
+        // Navegación con fragmento (#video, #videos...) dentro de la SPA:
+        // el navegador no hace scroll al cambiar la URL con history API, y las
+        // imágenes con loading="lazy" desplazan al ancla cuando terminan de cargar.
+        (function () {
+            var fixTimer = null;
+            var userMoved = false;
+
+            ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+                window.addEventListener(ev, function () { userMoved = true; }, { passive: true });
+            });
+
+            // ¿Quedan imágenes por cargar POR ENCIMA del ancla? (su alto mueve al ancla)
+            function pendingAbove(el) {
+                var top = el.getBoundingClientRect().top + window.scrollY;
+                var imgs = document.images;
+                for (var i = 0; i < imgs.length; i++) {
+                    if (imgs[i].complete) continue;
+                    if (imgs[i].getBoundingClientRect().top + window.scrollY < top) return true;
+                }
+                return false;
+            }
+
+            window.scrollToAnchor = function (id) {
+                var el = document.getElementById(id);
+                if (!el) return false;
+
+                userMoved = false;
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                if (fixTimer) clearInterval(fixTimer);
+                var tries = 0;
+                fixTimer = setInterval(function () {
+                    var target = document.getElementById(id);
+                    if (!target || userMoved || ++tries > 40) {
+                        clearInterval(fixTimer);
+                        fixTimer = null;
+                        return;
+                    }
+                    target.scrollIntoView({ behavior: 'auto', block: 'start' });
+                    if (!pendingAbove(target)) {
+                        clearInterval(fixTimer);
+                        fixTimer = null;
+                    }
+                }, 300);
+                return true;
+            };
+        })();
+    </script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
 

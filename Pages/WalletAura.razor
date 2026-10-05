@@ -1,0 +1,146 @@
+@page "/walletaura"
+@using PortfolioNaiquen.Shared.Components
+@using Microsoft.JSInterop
+@inject PortfolioNaiquen.Services.LanguageService Lang
+@inject NavigationManager Nav
+@inject IJSRuntime JS
+@implements IDisposable
+
+<PageTitle>@Lang.T("walletAuraTitle") - Naiquen Iturralde</PageTitle>
+
+<div class="aura-page">
+    <!-- ===================== EL PROYECTO (marca + mockup + descripción) ===================== -->
+    <section id="proyecto" class="aura-section fade-in">
+        <div class="aura-project">
+            <!-- Superior: título + presentación + logo (izquierda) / mockup (derecha) -->
+            <div class="aura-project__top">
+                <div class="aura-project__brand">
+                    <h1 class="page-title">
+                        <span class="gradient-text">@Lang.T("walletAuraTitle")</span>
+                    </h1>
+                    <p class="page-subtitle">@Lang.T("walletAuraSubtitle")</p>
+                    <div class="aura-project__brand-intro">
+                        <p class="aura-project__tagline">@Lang.T("walletAuraTagline")</p>
+                        <p>@Lang.T("walletAuraBrandIntro")</p>
+                    </div>
+                    <img class="aura-project__logo" src="img/AuraAsset.png" alt="@Lang.T("walletAuraTitle")" />
+                </div>
+
+                <div class="aura-project__visual">
+                    <div class="aura-project__mockup">
+                        <img src="img/AuraWalletQR.png" alt="@Lang.T("walletAuraMockupAlt")" loading="lazy"
+                             decoding="async" />
+                    </div>
+                    <a class="aura-project__qr-link" href="https://walletsquad1.runasp.net/" target="_blank"
+                       rel="noopener noreferrer">@Lang.T("walletAuraMockupLink")</a>
+                </div>
+            </div>
+
+            <!-- Descripción completa en un único bloque centrado -->
+            <div class="aura-project__content">
+                <div class="aura-project__text">
+                    <h2 class="section-title">@Lang.T("walletAuraProjectTitle")</h2>
+                    <p class="aura-project__desc">@Lang.T("walletAuraProjectDescription")</p>
+                </div>
+
+                <div class="aura-tags aura-project__tags">
+                    <span class="tag">UX/UI</span>
+                    <span class="tag">Blazor</span>
+                    <span class="tag">C#</span>
+                    <span class="tag">.NET</span>
+                    <span class="tag">BigQuery</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Looker Studio</span>
+                </div>
+
+                <div class="aura-project__actions">
+                    <a href="https://walletsquad1.runasp.net/" target="_blank" rel="noopener noreferrer"
+                       class="project-button">@Lang.T("walletAuraDemoLink")</a>
+                    <a href="design" class="project-button back-design-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 12H5M12 19l-7-7 7-7" />
+                        </svg>
+                        @Lang.T("walletAuraBackDesign")
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @if (_showVideo)
+    {
+        <!-- ===================== PRESENTACIÓN (VIDEO) ===================== -->
+        <section id="video" class="aura-section fade-in">
+            <h2 class="section-title">@Lang.T("walletAuraVideoTitle")</h2>
+            <p class="section-lead">@Lang.T("walletAuraVideoLead")</p>
+
+            <div class="aura-video glass">
+                <video class="aura-video__player" controls preload="metadata" playsinline>
+                    <source src="img/videosWA/PresentacionWallet.mp4" type="video/mp4" />
+                    @Lang.T("walletAuraVideoFallback")
+                </video>
+            </div>
+        </section>
+    }
+
+    <section class="page-navigation fade-in">
+        <CrossNavigationFooter CurrentPage="design" />
+    </section>
+</div>
+
+@code {
+    private string? _pendingAnchor;
+    private bool _showVideo;
+
+    protected override void OnInitialized()
+    {
+        Lang.OnChange += StateHasChanged;
+        Nav.LocationChanged += OnLocationChanged;
+        _pendingAnchor = GetFragment(Nav.Uri);
+        _showVideo = IsVideoView(Nav.Uri);
+    }
+
+    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        _showVideo = IsVideoView(e.Location);
+
+        var anchor = GetFragment(e.Location);
+        if (!string.IsNullOrEmpty(anchor))
+        {
+            _pendingAnchor = anchor;
+        }
+
+        StateHasChanged();
+    }
+
+    /// <summary>La presentación solo se muestra si se llegó con #video (botón «Ver video»).</summary>
+    private static bool IsVideoView(string uri) =>
+        uri.Contains("walletaura", StringComparison.OrdinalIgnoreCase) &&
+        uri.Contains("#video", StringComparison.OrdinalIgnoreCase);
+
+    /// <summary>Devuelve el fragmento (#algo) de una URL o null.</summary>
+    private static string? GetFragment(string uri)
+    {
+        var hash = uri.IndexOf('#');
+        return hash >= 0 && hash < uri.Length - 1 ? uri[(hash + 1)..] : null;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (string.IsNullOrEmpty(_pendingAnchor))
+        {
+            return;
+        }
+
+        var anchor = _pendingAnchor;
+        _pendingAnchor = null;
+        await JS.InvokeVoidAsync("scrollToAnchor", anchor);
+    }
+
+    public void Dispose()
+    {
+        Lang.OnChange -= StateHasChanged;
+        Nav.LocationChanged -= OnLocationChanged;
+    }
+}

@@ -184,6 +184,26 @@ namespace PortfolioNaiquen.Services
                 ["riderOneBtnProject"] = "Ver proyecto",
                 ["riderOneBtnVideos"] = "Ver videos",
 
+                // ── Wallet Aura (Card en Design) ──
+                ["walletAuraTitle"] = "Wallet Aura",
+                ["walletAuraSubtitle"] = "Demo de billetera digital y análisis de datos",
+                ["walletAuraCardDesc"] = "Diseño y desarrollo de una aplicación web responsive con paneles para usuarios y administradores. Integra consultas a Google BigQuery y gráficos de Looker Studio para visualizar cuentas, movimientos e inversiones.",
+                ["walletAuraBtnProject"] = "Ver proyecto",
+                ["walletAuraBtnVideo"] = "Ver video",
+
+                // ── Wallet Aura (Página interna) ──
+                ["walletAuraTagline"] = "Tus finanzas, más claras.",
+                ["walletAuraBrandIntro"] = "Una demo de billetera digital que reúne cuentas, movimientos e inversiones en una experiencia simple e intuitiva.",
+                ["walletAuraBackDesign"] = "Volver a Diseño",
+                ["walletAuraProjectTitle"] = "El proyecto",
+                ["walletAuraProjectDescription"] = "Diseñé y desarrollé una aplicación web responsiva con paneles independientes para usuarios y administradores. Integré consultas a Google BigQuery y gráficos de Looker Studio en una interfaz construida con Blazor, C# y .NET, para visualizar cuentas, movimientos e inversiones.",
+                ["walletAuraDemoLink"] = "Ir a la demo",
+                ["walletAuraMockupLink"] = "Explorar la demo ↗",
+                ["walletAuraMockupAlt"] = "Mockup de Wallet Aura con código QR para acceder a la demo",
+                ["walletAuraVideoTitle"] = "Presentación del proyecto",
+                ["walletAuraVideoLead"] = "Recorrido en video por la propuesta, los paneles y los insights de datos de Wallet Aura.",
+                ["walletAuraVideoFallback"] = "Tu navegador no soporta la reproducción de video HTML5.",
+
                 // ── Rider One (Página interna) ──
                 ["riderOneIntro"] = "Proyecto tecnológico que combina diseño UX/UI, diseño 3D, software, electrónica y prototipado físico para desarrollar un sistema de señalización y seguridad integrado a una bicicleta.",
                 ["riderOneBackDesign"] = "Volver a Diseño",
@@ -488,6 +508,26 @@ namespace PortfolioNaiquen.Services
                 ["riderOneCardDesc"] = "A tech project combining UX/UI design, 3D design, software, electronics and physical prototyping to develop a signaling and safety system integrated into a bicycle.",
                 ["riderOneBtnProject"] = "View project",
                 ["riderOneBtnVideos"] = "View videos",
+
+                // ── Wallet Aura (Card en Design) ──
+                ["walletAuraTitle"] = "Wallet Aura",
+                ["walletAuraSubtitle"] = "Digital wallet and data analytics demo",
+                ["walletAuraCardDesc"] = "Design and development of a responsive web application with user and administrator dashboards. Integrates Google BigQuery queries and Looker Studio charts to visualize accounts, transactions, and investments.",
+                ["walletAuraBtnProject"] = "View project",
+                ["walletAuraBtnVideo"] = "Watch video",
+
+                // ── Wallet Aura (Página interna) ──
+                ["walletAuraTagline"] = "Your finances, clearer.",
+                ["walletAuraBrandIntro"] = "A digital wallet demo that brings accounts, transactions, and investments together in a simple, intuitive experience.",
+                ["walletAuraBackDesign"] = "Back to Design",
+                ["walletAuraProjectTitle"] = "The project",
+                ["walletAuraProjectDescription"] = "I designed and developed a responsive web application with separate dashboards for users and administrators. I integrated Google BigQuery queries and Looker Studio charts into an interface built with Blazor, C#, and .NET to visualize accounts, transactions, and investments.",
+                ["walletAuraDemoLink"] = "Open live demo",
+                ["walletAuraMockupLink"] = "Explore the demo ↗",
+                ["walletAuraMockupAlt"] = "Wallet Aura mockup with a QR code to access the live demo",
+                ["walletAuraVideoTitle"] = "Project presentation",
+                ["walletAuraVideoLead"] = "A video walkthrough of Wallet Aura's proposal, dashboards and data insights.",
+                ["walletAuraVideoFallback"] = "Your browser does not support HTML5 video playback.",
 
                 // ── Rider One (Página interna) ──
                 ["riderOneIntro"] = "A tech project combining UX/UI design, 3D design, software, electronics and physical prototyping to develop a signaling and safety system integrated into a bicycle.",
